@@ -48,7 +48,7 @@
 			</click-outside>
 
 		</div>
-		<div class="modal" :class="{ 'is-active': form }" style="z-index: 11;">
+		<div class="modal" :class="{ 'is-active': form }" style="z-index: 101;">
 			<div class="modal-background"></div>
 			<div class="modal-content">
                 <div class="panel">
