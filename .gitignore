@@ -1,0 +1,5 @@
+/public/storage
+/vendors
+/node_modules
+.env
+sftp-config.json
