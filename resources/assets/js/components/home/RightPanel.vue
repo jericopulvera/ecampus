@@ -21,7 +21,7 @@
                 </div>
                 <div class="column is-9">
                     <p>
-                        <a href="#">
+                        <a :href="'/'+suggestUser.usn" target="_blank">
                             <strong>{{suggestUser.name}}</strong> &commat;{{suggestUser.username}}
                         </a>
                         <a @click="removeSuggested(suggestUser.id)">
@@ -81,7 +81,11 @@
 
                             let name = this.suggestions[i].name;
 
-                            noty({ text: 'You are now following ' + name , type: 'sucess'});
+                            window.noty({ 
+                                text: 'You are now following ' + name, 
+                                type: 'sucess',
+                                timeout: 3000,
+                            });
                             
                             this.suggestions.splice(i,1);
                             

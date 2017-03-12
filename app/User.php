@@ -147,7 +147,8 @@ class User extends Authenticatable
 
     public function getUserGroupsAttribute()
     {
-        return $this->groups()->get();
+        $term_id = \App\Setting::first()->term_id;
+        return $this->groups()->where('term_id', $term_id)->get();
     }
 
     /*

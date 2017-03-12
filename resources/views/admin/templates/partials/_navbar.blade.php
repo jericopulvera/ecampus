@@ -13,6 +13,11 @@
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                         <li>
+                            <a href="/">
+                                <span>Go back to main panel</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="/admin/settings">
                                 <span>Settings</span>
                             </a>
@@ -26,7 +31,7 @@
                     </ul>
                 </li>
 
-                @include('admin.templates.partials.navbar.notifications')
+                {{-- @include('admin.templates.partials.navbar.notifications') --}}
 
                 <li class="user-footer">
                              

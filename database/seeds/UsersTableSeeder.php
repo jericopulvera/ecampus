@@ -2,6 +2,8 @@
 
 use App\Key;
 use App\User;
+use App\Setting;
+use App\Group;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
@@ -9,6 +11,7 @@ class UsersTableSeeder extends Seeder
 {
     public function run()
     {
+
         $faker = Faker::create();
 
         $follow = User::create([
@@ -32,6 +35,47 @@ class UsersTableSeeder extends Seeder
        ]);
 
         $user->following()->attach($follow);
+
+        $term_id = Setting::first()->term_id;
+
+        $subjects = ['CS101', 'COMP101', 'IT401', 'IT411', 'ENGL101', 'ENGL201'];
+
+        $sections = ['CS', 'CX', 'CZ', 'ID', 'IJ', 'IK'];
+
+        // GEO's GROUPS
+        $startCount = 8; 
+        $endCount = 9;
+        
+        for ($i = 0; $i < count($subjects); $i++) {
+            
+
+            $start = $startCount . ':00'; 
+            $end = $endCount . ':00';
+
+            $startCount++;
+            $endCount++;
+
+            $subject = $subjects[$i];
+
+            $section = $sections[$i];
+
+            $slug = $subject . '-' . $section . '-' . $term_id;
+
+            $group = Group::create([
+                'professor' => $user->name,
+                'subject' => $subject,
+                'section' => $section,
+                'term_id' => $term_id,
+                'start' => $start,
+                'end' => $end,
+                'slug' => $slug,
+                'room' => '30' . $i,
+                'dow' => 'a:3:{i:0;s:1:"1";i:1;s:1:"3";i:2;s:1:"5";}'
+            ]);
+
+            $user->groups()->attach($group, ['role' => 'admin', 'status' => 1]);
+        }
+    
         
         // PROFESSORS
         foreach(range(1,10) as $index) {

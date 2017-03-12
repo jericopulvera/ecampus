@@ -31,7 +31,6 @@ class GroupController extends Controller
 
     public function store(StoreGroupRequest $request)
     {
-
         if (Group::where('slug', $request->slug)->first() != null) {
             notify()->flash('Class already exist', 'error');
             return redirect()->to('groups/create');

@@ -7,10 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     protected $fillable = [
-        'professor', 'subject', 'section', 'term_id',
-        'semester', 'year', 'slug', 
-        'dow', 'room', 'start', 
-        'end',
+        'professor', 'subject', 'section', 'term_id', 'slug', 
+        'dow', 'room', 'start', 'end',
     ];
 
     protected $appends = [

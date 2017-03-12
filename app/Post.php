@@ -45,9 +45,12 @@ class Post extends Model
     }
 
     public function commentValue()
-    {
-        return 1;
-        // return $this->comments->where('user_id', '!=', auth()->id())->count();
+    {   
+        $count = 0;
+        foreach ($this->comments as $comment) {
+            $count++;
+        }
+        return $count;
     }
 
     /*

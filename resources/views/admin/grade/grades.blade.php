@@ -4,7 +4,7 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Users list</h2>
+            <h2>All Grades</h2>
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -14,10 +14,12 @@
                         <tr class="headings">
                             <th class="column-title">USN</th>
                             <th class="column-title">Name</th>
-                            <th class="column-title">Privilege</th>
-                            <th class="column-title">Followers</th>
-                            <th class="column-title">Following</th>
-                            <th class="column-title">Posts</th>
+                            <th class="column-title">Course</th>
+                            <th class="column-title">Subject</th>
+                            <th class="column-title">Section</th>
+                            <th class="column-title">Grade</th>
+                            <th class="column-title">Final Mark</th>
+                            <th class="column-title">Academic Term</th>
                             <th class="column-title no-link last"><span class="nobr">Action</span></th>
                         </tr>
                     </thead>
@@ -43,14 +45,16 @@
             $('#users').DataTable({
                 processing: true,
                 serverSide: false,
-                ajax: '{!! url('/admin/api/users') !!}',
+                ajax: '{!! url('/admin/api/grades') !!}',
                 columns: [
                     { data: 'usn', name: 'USN' },
                     { data: 'name', name: 'name' },
-                    { data: 'privilege', name: 'privilege' },
-                    { data: 'followerCount', name: 'followers' },
-                    { data: 'followCount', name: 'following' },
-                    { data: 'postCount', name: 'posts' },
+                    { data: 'course', name: 'course' },
+                    { data: 'subject', name: 'subject' },
+                    { data: 'section', name: 'section' },
+                    { data: 'grade', name: 'grade' },
+                    { data: 'mark', name: 'mark' },
+                    { data: 'academic_term', name: 'term' },
                     { data: 'action', name: 'action', orderable: false, searchable: false }
                 ]
             });

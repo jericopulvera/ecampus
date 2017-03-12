@@ -12,10 +12,13 @@
 
     <!-- Bootstrap -->
     <link href="/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link href="/admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="/admin/vendors/nprogress/nprogress.css" rel="stylesheet">
+    
+    <!-- Sweet Alert -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.4.3/sweetalert2.min.css" rel="stylesheet">
+    
     <!-- jQuery custom content scroller -->
     <link href="/admin/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 
@@ -54,8 +57,23 @@
     <script src="/admin/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="/admin/build/js/custom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.4.3/sweetalert2.min.js"></script>
 
+    <script src="/admin/build/js/custom.min.js"></script>
+    
+    @if (notify()->ready())
+        <script>
+            swal({
+                title: "{!! notify()->message() !!}",
+                text: "{!! notify()->option('text') !!}",
+                type: "{{ notify()->type() }}",
+                @if (notify()->option('timer'))
+                    timer: {{ notify()->option('timer') }},
+                    showConfirmButton: false
+                @endif
+            });
+        </script>
+    @endif
     @stack('admin-js')
   </body>
 </html>

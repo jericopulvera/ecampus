@@ -77,23 +77,23 @@
           calculateMark(grades) {
             var grade = this.calculateTotalGrade(grades);
 
-            if (grade >= 96 && grade <=100) {
+            if (grade >= 96) {
                 return 'A+';
-            } else if (grade >=91 && grade <=95) {
+            } else if (grade >= 95) {
                 return 'A';
-            } else if (grade >=86 && grade <=90) {
+            } else if (grade >= 90) {
                 return 'A-';
-            } else if (grade >=81 && grade <=85) {
+            } else if (grade >= 85) {
                 return 'B+';
-            } else if (grade >=75 && grade <=80) {
+            } else if (grade >= 80) {
                 return 'B';
-            } else if (grade >=69 && grade <=74) {
+            } else if (grade >= 74) {
                 return 'B-';
-            } else if (grade >=63 && grade <=68) {
+            } else if (grade >= 68) {
                 return 'C+';
-            } else if (grade >=57 && grade <=62) {
+            } else if (grade >= 62) {
                 return 'C';
-            } else if (grade >=50 && grade <=56) {
+            } else if (grade >= 50) {
                 return 'C-';
             } else {
                 return 'F';
@@ -103,8 +103,8 @@
           submitGrade(incomplete) {
             var self = this;
             swal({
-              title: 'Are you sure?',
-              text: "You will need dean's permission to revert this!",
+              title: 'Info',
+              text: "Submit again to update the final grade",
               type: 'info',
               showCancelButton: true,
               confirmButtonText: 'Submit'

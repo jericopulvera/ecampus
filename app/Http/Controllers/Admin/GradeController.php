@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Setting;
+use App\Grade;
 
-class SettingController extends Controller
+class GradeController extends Controller
 {
     public function __construct()
     {
@@ -15,9 +15,12 @@ class SettingController extends Controller
 
     public function index()
     {
-        $setting = Setting::with('term')->first();
-        
-        return view('admin.setting', compact('setting'));
+        return view('admin.grade.grades');
+    }
+
+    public function failedGrades()
+    {
+        return view('admin.grade.failed-grades');
     }
 
 }

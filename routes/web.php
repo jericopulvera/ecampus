@@ -22,6 +22,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/users', 'UserController@index');
         Route::get('/professors', 'UserController@professors');
         Route::get('/students', 'UserController@students');
+        Route::get('/users/create', 'UserController@create');
+        Route::post('/users/create', 'UserController@store');
 
         // Users API
         Route::get('/api/users', 'Api\UserController@index');
@@ -34,6 +36,13 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         // Settings
         Route::get('/settings', 'SettingController@index');
 
+        // Grades
+        Route::get('/grades', 'GradeController@index');
+        Route::get('/grades/current', 'GradeController@failedGrades');
+
+        // Grades Api
+        Route::get('/api/grades', 'Api\GradeController@index');
+        Route::get('/api/failed-grades', 'Api\GradeController@failedGrades');
     });
 
     Route::group(['prefix' => 'webapi', 'namespace' => 'Api'], function () {

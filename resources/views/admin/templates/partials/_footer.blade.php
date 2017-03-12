@@ -1,7 +1,7 @@
 <!-- footer content -->
 <footer>
     <div class="pull-right">
-        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+       ┬─┬ノ( º _ ºノ) at ┬─┬ノ( º _ ºノ)
     </div>
     <div class="clearfix"></div>
 </footer>
