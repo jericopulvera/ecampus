@@ -14,7 +14,7 @@
 		     	<tbody>
 		     		<tr v-for="(student, index) in ranking">
 		     			<td>{{index +1}}</td>
-		     			<td><a :href="$root.baseUrl+'/'+student.usn" target="_blank">{{student.name}}</a></td>
+		     			<td><a :href="'/'+student.usn" target="_blank">{{student.name}}</a></td>
 		     			
 		     			<td>
 		     				{{student.totalGrade}} %

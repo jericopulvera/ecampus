@@ -34,24 +34,6 @@ class FollowUser extends Notification implements ShouldQueue
     }
 
     /**
-     * Get the mail representation of the notification.
-     *
-     * @param mixed $notifiable
-     *
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    // public function toMail($notifiable)
-    // {
-    //     $name = Auth::user()->name;
-    //     $usn = Auth::user()->usn;
-
-    //     return (new MailMessage())
-    //                 ->subject('A User followed you')
-    //                 ->action('Notification Action', 'https://ecampus.jericopulvera.com')
-    //                 ->line($name.'|'.$usn.' followed you!');
-    // }
-
-    /**
      * Get the array representation of the notification.
      *
      * @param mixed $notifiable
@@ -62,6 +44,7 @@ class FollowUser extends Notification implements ShouldQueue
     {
         return [
             'user'   => auth()->user(),
+            'message' => '<a href="/'.auth()->user()->usn.'">'. auth()->user()->name. '</a> followed you',
         ];
     }
 }

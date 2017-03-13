@@ -81,10 +81,10 @@
 
                             let name = this.suggestions[i].name;
 
-                            window.noty({ 
+                            noty({ 
                                 text: 'You are now following ' + name, 
-                                type: 'sucess',
-                                timeout: 3000,
+                                type: 'success',
+                                timeout: 2000,
                             });
                             
                             this.suggestions.splice(i,1);

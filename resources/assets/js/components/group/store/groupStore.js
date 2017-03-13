@@ -50,7 +50,7 @@ const actions = {
     commit('EDIT_GRADE', info);
   },
   fetchMembers({commit}, group_slug) {
-  	return axios.get('/group/fetch-members/'+ group_slug).then((response) => {
+  	return axios.get('/webapi/group/fetch-members/'+ group.slug).then((response) => {
   			     commit('SET_MEMBERS', response.data);
            })
   },

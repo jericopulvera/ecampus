@@ -82,7 +82,7 @@
 			},
 
 			updateGrade () {
-				axios.post('/group/'+this.student.pivot.group_id+'/'+this.student.id+'/update-grade', this.grade).then((response) => {
+				axios.post('/webapi/group/'+this.student.pivot.group_id+'/'+this.student.id+'/update-grade', this.grade).then((response) => {
 				    if (response.status === 200) {
 				    	this.$store.dispatch('fetchMembers', group.slug);
 				    	this.$store.dispatch('closeModal');

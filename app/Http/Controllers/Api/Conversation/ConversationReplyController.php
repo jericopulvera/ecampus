@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Conversation;
 
 use App\Conversation;
 use App\Events\ConversationReplyCreated;

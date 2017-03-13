@@ -1,6 +1,6 @@
 
 window._ = require('lodash');
-
+window.moment = require('moment');
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean

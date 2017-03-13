@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Group;
+namespace App\Http\Controllers\Api\Group;
 
 use App\GroupComment;
 use App\GroupPost;

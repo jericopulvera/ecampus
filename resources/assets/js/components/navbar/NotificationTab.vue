@@ -22,10 +22,18 @@
 
 		methods: {
 			listen() {
-				Echo.private(`App.User.${this.$root.user.id}`)
+				Echo.private('App.User.'+this.$root.user.id)
 				    .notification((notification) => {
-				    	
+
+                        this.$root.$emit('added-notification', notification)
+                        
+				    	noty({ 
+                            text: notification.message,
+                            type: notification.noty_type,
+                            timeout: 3000,
+                        });
 				    		
+                        document.getElementById("noty_audio").play();
 				});
 
 					    		

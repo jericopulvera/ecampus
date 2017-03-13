@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Group;
+namespace App\Http\Controllers\Api\Group;
 
-use App\GroupComment;
+use App\GroupPost;
 use App\Http\Controllers\Controller;
 
-class GroupPostCommentLikeController extends Controller
+class GroupPostLikeController extends Controller
 {
     public function store($id)
     {
-        $comment = GroupComment::find($id);
+        $post = GroupPost::find($id);
 
-        $check = $comment->likes()->where('user_id', auth()->id())->first();
+        $check = $post->likes()->where('user_id', auth()->id())->first();
 
         if ($check != null) {
             $check->delete();
@@ -19,7 +19,7 @@ class GroupPostCommentLikeController extends Controller
             return response(1, 200);
         }
 
-        $like = $comment->likes()->firstOrNew([
+        $like = $post->likes()->firstOrNew([
             'user_id' => auth()->id(),
         ]);
 

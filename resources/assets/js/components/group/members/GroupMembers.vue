@@ -67,10 +67,10 @@
 
 		methods: {
 			expelUser(usn) {
-				var confirm = window.confirm('Are you sure you want to expel this student?')
+				var confirm = window.confirm('Are you sure you want to expel this user?')
 
 				if (confirm) {
-					axios.post('/group/kick/'+group.slug+'/'+usn)		
+					axios.post('/webapi/group/kick/'+group.slug+'/'+usn)		
 					    .then(response => {
 					         this.$store.dispatch('fetchMembers', group.slug);
 					    })

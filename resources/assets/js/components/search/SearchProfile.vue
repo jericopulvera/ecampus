@@ -62,10 +62,10 @@
 				this.loading = true;
 
 				if (this.isFollowing) {
-					noty({ text: 'You successfully unfollowed ' + this.user.name , type: 'sucess'});
+					noty({ text: 'You successfully unfollowed ' + this.user.name , type: 'success', timeout: 2000});
 					this.isFollowing = false
 				} else {
-					noty({ text: 'You are now following ' + this.user.name , type: 'sucess'});
+					noty({ text: 'You are now following ' + this.user.name , type: 'success', timeout: 2000});
 					this.isFollowing = true
 				}
 

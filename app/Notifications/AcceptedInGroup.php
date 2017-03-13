@@ -44,8 +44,9 @@ class AcceptedInGroup extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'group'   => $this->group,
-            'message' => 'You have been accepted in '.$this->group->subject.' class group.',
+            'group' => $this->group,
+            'message' => 'You are now a student in <a href="/groups/'.$this->group->slug.'">'. $this->group->subject .'-'. $this->group->section .'</a> class group.',
+            'noty_type' => 'success',
         ];
     }
 }

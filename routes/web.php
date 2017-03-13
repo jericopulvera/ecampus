@@ -46,6 +46,38 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     });
 
     Route::group(['prefix' => 'webapi', 'namespace' => 'Api'], function () {
+        Route::group(['namespace' => 'Group'], function () {
+            Route::get('group/datatables', 'GroupController@dataTable');
+            Route::get('group/pending/{group}', 'GroupController@pendingRequests');
+            Route::get('group/fetch-members/{group}', 'GroupController@fetchMembers');
+
+            Route::post('group/join-request', 'GroupController@joinRequest');
+            Route::post('group/accept/{group}/{user}', 'GroupController@acceptRequest');
+            Route::post('group/decline/{group}/{user}', 'GroupController@declineRequest');
+
+            Route::post('group/leave-class/{group}/{user}', 'GroupController@leaveClass');
+            Route::post('group/kick/{group}/{user}', 'GroupController@kickMember');
+
+            Route::post('group/settings/{group}', 'GroupSettingController@updateSettings');
+
+            // Group Post
+            Route::get('group/posts/{group}', 'GroupPostController@index');
+            Route::post('group/post/{group}', 'GroupPostController@store');
+            Route::delete('group/post/{id}', 'GroupPostController@destroy');
+
+            // Group Post Like
+            Route::post('group/like-post/{id}', 'GroupPostLikeController@store');
+
+            // Group Comment
+            Route::post('group/comment/{group}', 'GroupPostCommentController@store');
+            Route::delete('group/comment/{id}/{groupId}', 'GroupPostCommentController@destroy');
+
+            // Group Comment Like
+            Route::post('group/like-post-comment/{id}', 'GroupPostCommentLikeController@store');
+
+            // Group Grade
+            Route::post('group/{group}/{user}/update-grade', 'GroupGradeController@updateGrade');
+        });
         // Route::get('/conversations', 'ConversationController@index');
         // Route::post('/conversations', 'ConversationController@store');
         // Route::get('/conversations/{conversation}', 'ConversationController@show');
@@ -98,40 +130,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('groups', 'Group\GroupController@index');
     Route::get('groups/list', 'Group\GroupController@getLists');
     Route::get('groups/my-groups', 'Group\GroupController@myGroups');
-    Route::get('groups/datatables', 'Group\GroupController@dataTable');
-
     Route::get('groups/create', 'Group\GroupController@create');
     Route::post('groups/create', 'Group\GroupController@store');
-    Route::post('group/leave-class/{group}/{user}', 'Group\GroupController@leaveClass');
-
     Route::get('groups/{group}', 'Group\GroupController@group');
-    Route::post('groups/join-request', 'Group\GroupController@joinRequest');
-    Route::get('group/pending/{group}', 'Group\GroupController@pendingRequests');
-    Route::post('group/accept/{group}/{user}', 'Group\GroupController@acceptRequest');
-    Route::post('group/decline/{group}/{user}', 'Group\GroupController@declineRequest');
-
-    Route::post('group/kick/{group}/{user}', 'Group\GroupController@kickMember');
-    Route::post('group/settings/{group}', 'Group\GroupController@updateSettings');
-    Route::get('group/fetch-members/{group}', 'Group\GroupController@fetchMembers');
-
-    // Group Post
-    Route::get('group/posts/{group}', 'Group\GroupPostController@index');
-    Route::post('group/post/{group}', 'Group\GroupPostController@store');
-    Route::delete('group/post/{id}', 'Group\GroupPostController@destroy');
-
-    // Group Post Like
-    Route::post('group/like-post/{id}', 'Group\GroupPostLikeController@store');
-
-    // Group Comment
-    Route::post('group/comment/{group}', 'Group\GroupPostCommentController@store');
-    Route::delete('group/comment/{id}/{groupId}', 'Group\GroupPostCommentController@destroy');
-
-    // Group Comment Like
-    Route::post('group/like-post-comment/{id}', 'Group\GroupPostCommentLikeController@store');
-
-    // Group Grade
-    Route::get('grades', 'Group\GroupGradeController@allGrades');
-    Route::post('group/{group}/{user}/update-grade', 'Group\GroupGradeController@updateGrade');
 
     // Calendar Controller
     Route::get('/calendar', 'CalendarController@index');

@@ -45,6 +45,11 @@
           @endif
           
         </div>
+        
+        <audio id="noty_audio">
+            <source src="{{ asset('audio/notify.mp3')}}">
+            <source src="{{ asset('audio/notify.ogg')}}">
+        </audio>
 
         @stack('server-to-vue')
         

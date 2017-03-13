@@ -27,6 +27,7 @@ class FollowController extends Controller
     public function followUser(User $user)
     {
         if (auth()->user()->canFollow($user)) {
+            $user->notify(new \App\Notifications\FollowUser());
             auth()->user()->following()->attach($user);
         } else {
             auth()->user()->following()->detach($user);

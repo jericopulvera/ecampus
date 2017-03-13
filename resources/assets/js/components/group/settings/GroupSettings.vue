@@ -190,7 +190,7 @@
 				var confirm = window.confirm('Are you sure you want to leave the group?')
 
 				if (confirm) {
-					axios.post('/group/leave-class/'+group.slug+'/'+this.$root.user.usn).then((response) => {
+					axios.post('/webapi/group/leave-class/'+group.slug+'/'+this.$root.user.usn).then((response) => {
 						alert('You have successfully left the group')
 						window.location.href = '/';
 					})
@@ -199,7 +199,7 @@
 
 			updateSettings () {
 				if (this.form.start > this.form.end) { return this.timeError = true; }
-				 axios.post('/group/settings/'+group.slug, this.form)
+				 axios.post('/webapi/group/settings/'+group.slug, this.form)
 				     .then(response => {
 				     	this.timeError = false;
 				         if (response.data == 1) {

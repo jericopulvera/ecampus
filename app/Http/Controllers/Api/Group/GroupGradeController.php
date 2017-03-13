@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Group;
+namespace App\Http\Controllers\Api\Group;
 
 use App\GroupGrade;
 use App\Http\Controllers\Controller;
@@ -21,12 +21,5 @@ class GroupGradeController extends Controller
             ]);
 
         return $grade;
-    }
-
-    public function allGrades()
-    {
-        $records = Record::all();
-
-        return view('grades', compact('records'));
     }
 }

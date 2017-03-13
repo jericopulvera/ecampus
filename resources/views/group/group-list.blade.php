@@ -43,7 +43,7 @@
             ordering: true,
             info: true,
             autoWidth: true,
-            ajax: '{!! url('groups/datatables') !!}',
+            ajax: '{!! url('/webapi/group/datatables') !!}',
             columns: [
                 { data: 'professor', name: 'professor' },
                 { data: 'subject', name: 'subject' },
@@ -62,7 +62,7 @@
   {
      $.ajax({
          type: 'POST',
-         url: '{{ url('groups/join-request') }}',
+         url: '{{ url('/webapi/group/join-request') }}',
          data: {
            _token: $('meta[name="csrf-token"]').attr('content'),
              group_id: id,

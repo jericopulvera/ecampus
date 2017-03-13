@@ -8,63 +8,14 @@
                 </div>
                 <div class="panel-block">
                     <div class="control">
-                        <div class="notification">
-                            <button class="delete" onclick="((this).parentNode.remove())"></button>
-                            <strong>Cron job successfully completed.</strong>
+                        <div class="notification" v-for="notification in notifications" :key="notification.id">
+                            <strong v-html="notification.data.message"></strong>
                             <br>
-                            <small>2h ago | via: system</small>
+                            <small v-text="notification.created_at"></small>
                         </div>
                     </div>
                 </div>
             </div>
-           <!--  <article class="media box">
-                <div class=" event-timeline">
-                    <p>
-                        <a>
-                            All Notifications
-                        </a>
-                    </p>
-                    <hr>
-                    <p class="event-item" v-if="notifications.length === 0">
-                        <span class="subtitle">You have no notifications</span>
-                    </p>
-                    <p class="event-item" v-for="noty in notifications" :key="noty.id">
-                        <span class="icon-item-type"><i class="fa fa-star"></i></span>
-                        <a href="#" v-if="noty.type != 'App\\Notifications\\AcceptedInGroup'">{{noty.data.user.name}}</a>
-                        <a v-else>{{ noty.data.group.subject }}</a>
-                        <span v-if="noty.type == 'App\\Notifications\\PostLike'">
-                            liked your post <a href="#">{{noty.data.post.title}}</a> &nbsp;
-                        </span>
-                        <span v-if="noty.type == 'App\\Notifications\\PostComment'">
-                            reacted on your post <a href="#">{{noty.data.post.title}}</a> &nbsp;
-                        </span>
-                        <span v-if="noty.type == 'App\\Notifications\\CommentLike'">
-                            liked your comment <a href="#">{{noty.data.comment.body}}</a> &nbsp;
-                        </span>
-                        
-                        <span v-if="noty.type == 'App\\Notifications\\AcceptedInGroup'">
-                            <a :href="'/groups/' + noty.data.group.slug" target="_blank" >
-                                {{noty.data.message}}
-                            </a>
-                        </span>
-                        
-                        <span v-if="noty.type == 'App\\Notifications\\FollowUser'">
-                            <a :href="noty.data.user.usn" target="_blank">
-                                {{noty.data.message}}
-                            </a>
-                        </span>
-                        
-                        <span v-if="noty.type != 'App\\Notifications\\FollowUser' && noty.type != 'App\\Notifications\\AcceptedInGroup'">
-                            <a :href="'/post/'+noty.data.post.slug" target="_blank">
-                                {{noty.data.message}}
-                            </a>
-                        </span>
-                        
-                        <small>{{noty.readableDate}}</small>
-                    </p>
-                    
-                </div>
-            </article> -->
         </div>
         
         <left-panel style="order: 0;"></left-panel>
@@ -88,13 +39,18 @@
 
         methods: {
             listen() {
-
+                this.$root.$on('added-notification', this.pushNotification)
             },
 
             getNotifications() {
                 axios.get('/get-notifications').then((response) => {
                     this.notifications = response.data
-             })
+                 })
+            },
+
+            pushNotification(notification) {
+                console.log(notification)
+                this.notifications.unshift({ data: notification})
             }
         }
     }

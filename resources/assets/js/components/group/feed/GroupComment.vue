@@ -82,7 +82,7 @@
 
                 this.comment.likedByCurrentUser = !this.comment.likedByCurrentUser;
 
-                axios.post('/group/like-post-comment/'+this.comment.id)
+                axios.post('/webapi/group/like-post-comment/'+this.comment.id)
                     .then(response => {
                         setTimeout(() => {
                             this.disable = false

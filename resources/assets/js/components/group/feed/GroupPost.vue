@@ -103,7 +103,7 @@
 
                 this.post.likedByCurrentUser = !this.post.likedByCurrentUser;
 
-                axios.post('/group/like-post/'+this.post.id)
+                axios.post('/webapi/group/like-post/'+this.post.id)
                     .then(response => {
                         setTimeout(() => {
                             this.disable = false
@@ -125,7 +125,7 @@
 
                 if (confirm) {
                     eventHub.$emit('remove-post', id)
-                    axios.delete('/group/comment/'+id)
+                    axios.delete('/webapi/group/comment/'+id)
                         .then(response => {
                         })
                         .catch(error => {

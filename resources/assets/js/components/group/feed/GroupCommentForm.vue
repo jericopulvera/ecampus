@@ -47,7 +47,7 @@
       comment() {
         if (this.body.trim() != '') {
           this.loading = true;
-          axios.post('/group/comment/'+this.id, {body: this.body})
+          axios.post('/webapi/group/comment/'+this.id, {body: this.body})
             .then(response => {
                 this.$emit('load-post')
             })

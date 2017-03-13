@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Group;
+namespace App\Http\Controllers\Api\Group;
 
-use App\Group;
-use App\GroupPost;
 use App\Http\Controllers\Controller;
+use App\Events\GroupPostWasCreated;
+use App\Group;
+use App\GroupComment;
+use App\GroupPost;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -38,4 +40,5 @@ class GroupPostController extends Controller
         $post = GroupPost::find($id);
         $post->delete();
     }
+
 }

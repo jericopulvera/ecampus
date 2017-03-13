@@ -6,26 +6,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 
-class PostComment extends Notification implements ShouldQueue
+class GroupUserWasKicked extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $comment;
-
+    public $group;
     public $user;
-
-    public $post;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($comment, $user, $post)
+    public function __construct($group, $user)
     {
-        $this->comment = $comment;
+        $this->group = $group;
         $this->user = $user;
-        $this->post = $post;
     }
 
     /**
@@ -50,10 +46,9 @@ class PostComment extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'user'    => $this->user,
-            'comment' => $this->comment,
-            'post'    => $this->post,
-            'message' => $this->user->name ' Commented on one of your posts.',
+            'group' => $this->group,
+            'message' => 'You have been kicked out in <a href="/groups/'.$this->group->slug.'">'. $this->group->subject .'-'. $this->group->section .'</a> class group.',
+            'noty_type' => 'error',
         ];
     }
 }

@@ -29,8 +29,9 @@
 
         mounted () {
           this.load();
-            Echo.private('join-requests.'+group.slug).listen('JoinGroupRequested', (e) => {
+            Echo.private('join-requests.'+group.slug).listen('JoinGroupRequested', (event) => {
                 this.load();
+                noty({ text: event.user.name + ' requested to join this class.' , type: 'sucess', timeout: 5000});
             })
         },
 
@@ -38,18 +39,18 @@
             pluralize,
             
             load () {
-                axios.get('/group/pending/' + group.slug).then((response) => {
+                axios.get('/webapi/group/pending/' + group.slug).then((response) => {
                     this.requests = response.data;
                  })
             },
             accept (userUsn) {
-                axios.post('/group/accept/' + group.slug + '/' + userUsn).then((response) => {
+                axios.post('/webapi/group/accept/' + group.slug + '/' + userUsn).then((response) => {
                      this.$store.dispatch('fetchMembers')
                      this.load()
                 })
             },
             decline (userUsn) {
-                axios.post('/group/decline/' + group.slug + '/' + userUsn).then((response) => {
+                axios.post('/webapi/group/decline/' + group.slug + '/' + userUsn).then((response) => {
                      this.load()
                 })
             }
