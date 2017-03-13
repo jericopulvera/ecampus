@@ -8,10 +8,10 @@ class Feed
     private static function connect()
     {
         try {
-            $server = '127.0.0.1';
-            $username = 'homestead';
-            $password = 'secret';
-            $db = 'e-campus';
+            $server = env('DB_HOST');
+            $username = env('DB_USERNAME');
+            $password = env('DB_PASSWORD');
+            $db = env('DB_DATABASE');
 
             return $db = mysqli_connect($server, $username, $password, $db);
         } catch (Exception $ex) {
