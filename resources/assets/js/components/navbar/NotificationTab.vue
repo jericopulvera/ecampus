@@ -33,7 +33,7 @@
                             timeout: 3000,
                         });
 
-                        if ($this.$root.path != 'notifications'){
+                        if (this.$root.path != 'notifications'){
     				    	this.unreadCount++
                         }
 
