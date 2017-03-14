@@ -32,8 +32,10 @@
                             type: notification.noty_type,
                             timeout: 3000,
                         });
-				    		
-                        document.getElementById("noty_audio").play();
+
+				    	this.unreadCount++
+
+                        document.getElementById("noty_audio").play()
 				});
 
 					    		

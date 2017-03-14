@@ -22,7 +22,10 @@ class GroupController extends Controller
     {
         $group = Group::find($request->group_id);
         $antiSpam = $group->users()->where('usn', Auth::user()->usn)->count() == 0;
+
+
         if ($antiSpam) {
+            $user->notify(new \App\Notifications\GroupUserRequest($group, auth()->user()));
             Auth::user()->groups()->attach($request->group_id, ['role' => Auth::user()->privilege, 'status' => 0]);
             broadcast(new JoinGroupRequested($request->group_id, $request->user()))->toOthers();
         }
