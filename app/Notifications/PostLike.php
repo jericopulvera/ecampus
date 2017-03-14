@@ -10,6 +10,8 @@ class PostLike extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public $connection = 'database';
+
     public $post;
 
     public $user;

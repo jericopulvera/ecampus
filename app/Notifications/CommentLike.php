@@ -10,6 +10,8 @@ class CommentLike extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public $connection = 'beanstalkd';
+
     public $comment;
 
     public $user;
