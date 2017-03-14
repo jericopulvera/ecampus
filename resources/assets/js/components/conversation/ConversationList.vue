@@ -12,7 +12,7 @@
 			<a @click="showConversation(conversation.id)" v-for="conversation in conversationStore.conversations" :key="conversation.id">
 				<div class="box">
 					<div class="box-info">
-					    <img width="200" height="200" :src="conversation.image" alt="" />
+					    <img width="200" height="200" id="drop-image" :src="conversation.image" alt="" />
 					   <span>{{conversation.conversationName}} &nbsp;</span>
 					   <span class="tag is-danger">1</span>
 					</div>

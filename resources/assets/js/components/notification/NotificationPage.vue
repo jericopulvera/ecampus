@@ -49,7 +49,6 @@
             },
 
             pushNotification(notification) {
-                console.log(notification)
                 this.notifications.unshift({ data: notification})
             }
         }

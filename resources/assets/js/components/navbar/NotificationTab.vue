@@ -43,7 +43,6 @@
 
 			get_unread() {
 				axios.get('/get-unread').then(response => {
-					
 					// COMMENTS NOTIFICATION
 					let comments = _.filter(response.data, function(data){
 					  return data.type === "App\\Notifications\\PostComment";
