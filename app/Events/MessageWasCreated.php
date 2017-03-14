@@ -11,10 +11,9 @@ use Illuminate\Queue\SerializesModels;
 
 class MessageWasCreated implements ShouldBroadcast
 {
-    use InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets, SerializesModels;; 
 
     public $message;
-    public $connection = 'sync';
 
     /**
      * Create a new event instance.

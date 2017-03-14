@@ -108,7 +108,9 @@ class ConversationController extends Controller
 
         $data = $message->where('id', $message->id)->with('user')->first();
 
-        broadcast(new MessageWasCreated($data))->toOthers();
+        broadcast(new MessageWasCreated($data))
+            >onConnection('sync')
+            ->toOthers();
 
         return $data;
     }

@@ -12,7 +12,6 @@ class FollowUser extends Notification implements ShouldQueue
 
     public $user;
     public $follow;
-    public $connection = 'beanstalkd';
 
     /**
      * Create a new notification instance.

@@ -10,10 +10,7 @@ class GroupUserRequest extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $connection = 'database';
-
     public $group;
-
     public $user;
 
     /**
