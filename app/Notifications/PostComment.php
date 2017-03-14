@@ -53,7 +53,7 @@ class PostComment extends Notification implements ShouldQueue
             'user'    => $this->user,
             'comment' => $this->comment,
             'post'    => $this->post,
-            'message' => $this->user->name ' Commented on one of your posts.',
+            'message' => $this->user->name . ' Commented on one of your posts.',
         ];
     }
 }

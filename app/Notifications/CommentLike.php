@@ -53,7 +53,7 @@ class CommentLike extends Notification implements ShouldQueue
             'user'    => $this->user,
             'comment' => $this->comment,
             'post'    => $this->post,
-            'message' => $this->user->name ' Liked one of your comments.',
+            'message' => $this->user->name . ' Liked one of your comments.',
         ];
     }
 }
