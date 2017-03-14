@@ -47,7 +47,7 @@ class GroupUserWasKicked extends Notification implements ShouldQueue
     {
         return [
             'group' => $this->group,
-            'message' => 'You have been kicked out in <a href="/groups/'.$this->group->slug.'">'. $this->group->subject .'-'. $this->group->section .'</a> class group.',
+            'message' => 'You have been kicked out in <a href="/groups/'.$this->group->slug.'">'. $this->group->slug.'</a> class group.',
             'noty_type' => 'error',
         ];
     }

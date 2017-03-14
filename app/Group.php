@@ -78,4 +78,9 @@ class Group extends Model
 
         return false;
     }
+
+    public function getProfessorObject()
+    {
+        return User::find($this->professorId());
+    }
 }

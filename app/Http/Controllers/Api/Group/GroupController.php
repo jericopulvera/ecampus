@@ -22,7 +22,7 @@ class GroupController extends Controller
     {
         $group = Group::find($request->group_id);
         $antiSpam = $group->users()->where('usn', Auth::user()->usn)->count() == 0;
-
+        $user = $group->getProfessorObject();
 
         if ($antiSpam) {
             $user->notify(new \App\Notifications\GroupUserRequest($group, auth()->user()));

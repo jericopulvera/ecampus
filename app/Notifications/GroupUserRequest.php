@@ -6,12 +6,12 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 
-class AcceptedInGroup extends Notification implements ShouldQueue
+class GroupUserRequest extends Notification implements ShouldQueue
 {
     use Queueable;
 
     public $group;
-    public $user
+    public $user;
 
     /**
      * Create a new notification instance.
