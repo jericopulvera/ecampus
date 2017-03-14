@@ -9,7 +9,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Queue\SerializesModels;
 
-class MessageWasCreated implements ShouldBroadcast
+class MessageWasCreated implements ShouldBroadcastNow
 {
     use InteractsWithSockets, SerializesModels;
 
