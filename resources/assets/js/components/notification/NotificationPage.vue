@@ -13,6 +13,10 @@
                             <br>
                             <small v-text="notification.created_at"></small>
                         </div>
+
+                        <div class="notification is-warning has-text-centered">
+                            <strong> No notifications </strong>
+                        </div>
                     </div>
                 </div>
             </div>
