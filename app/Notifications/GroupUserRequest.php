@@ -47,7 +47,7 @@ class GroupUserRequest extends Notification implements ShouldQueue
     {
         return [
             'group' => $this->group,
-            'message' => '<a href="/'.$this->user->usn.'"> Requested to join <a href="'.$this->group->slug.'">'.$this->group->slug.'</a>',
+            'message' => '<a href="/'.$this->user->usn.'">  '. $this->user->name .'</a>  Requested to join <a href="' . $this->group->slug . '">' . $this->group->slug . '</a>',
             'noty_type' => 'success',
         ];
     }
