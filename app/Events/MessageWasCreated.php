@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 
 class MessageWasCreated implements ShouldBroadcast
 {
-    use InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets;
 
     public $message;
 
