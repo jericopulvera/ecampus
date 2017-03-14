@@ -33,7 +33,9 @@
                             timeout: 3000,
                         });
 
-				    	this.unreadCount++
+                        if ($this.$root.path != 'notifications'){
+    				    	this.unreadCount++
+                        }
 
                         document.getElementById("noty_audio").play()
 				});
