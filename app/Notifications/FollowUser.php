@@ -10,14 +10,18 @@ class FollowUser extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public $user;
+    public $follow;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user, $follow)
     {
-        //
+        $this->user = $user;
+        $this->follow = $follow;
     }
 
     /**
@@ -41,9 +45,14 @@ class FollowUser extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
+        if ($this->follow) {
+            $message = '<a href="/'.$this->user->usn.'">'. $this->user->name. '</a> followed you';
+        } else {
+            $message = '<a href="/'.$this->user->usn.'">'. $this->user->name. '</a> unfollowed you';
+        }
         return [
-            'user'   => auth()->user(),
-            'message' => '<a href="/'.auth()->user()->usn.'">'. auth()->user()->name. '</a> followed you',
+            'user'   => $this->user,
+            'message' => $message,
         ];
     }
 }
