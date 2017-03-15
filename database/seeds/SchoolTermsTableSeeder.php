@@ -13,12 +13,12 @@ class SchoolTermsTableSeeder extends Seeder
      */
     public function run()
     {
-        $term = new Term;
-        $term->start = '2016-10-18';
-        $term->end = '2016-12-18';
-        $term->year = '2016-2017';
-        $term->semester = '2nd';
-        $term->save();
+        $term1 = new Term;
+        $term1->start = '2016-10-18';
+        $term1->end = '2016-12-18';
+        $term1->year = '2016-2017';
+        $term1->semester = '2nd';
+        $term1->save();
 
         $term = new Term;
         $term->start = '2017-01-18';
@@ -60,7 +60,7 @@ class SchoolTermsTableSeeder extends Seeder
         // }
 
         $setting = new Setting;
-        $setting->term()->associate($term->id);
+        $setting->term()->associate($term1->id);
         $setting->save();
     }
 }
