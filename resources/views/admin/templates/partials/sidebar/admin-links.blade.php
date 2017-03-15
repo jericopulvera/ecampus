@@ -30,6 +30,10 @@
         </ul>
     </li>
     <li>
-        {{-- <a href="/admin/settings"><i class="fa fa-cog"></i> Settings</a> --}}
+        <a href="/admin/academic-term"><i class="fa fa-graduation-cap"></i> Academic Terms</a>
+    </li>
+    
+    <li>
+        <a href="/admin/settings"><i class="fa fa-cog"></i> Settings</a>
     </li>
 </ul>

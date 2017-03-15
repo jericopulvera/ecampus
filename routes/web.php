@@ -35,6 +35,13 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
         // Settings
         Route::get('/settings', 'SettingController@index');
+        Route::post('/settings', 'SettingController@update');
+
+        Route::resource('academic-term', 'AcademicTermController');
+        // Route::get('/academic-term', 'AcademicTermController@index');
+        // Route::post('/academic-term', 'AcademicTermController@store');
+        // Route::get('/academic-term/{schoolTerm}', 'AcademicTermController@edit');
+        // Route::patch('/academic-term/{schoolTerm}', 'AcademicTermController@update');
 
         // Grades
         Route::get('/grades', 'GradeController@index');

@@ -21,8 +21,8 @@
                 </div>
                 <div class="column is-9">
                     <p>
-                        <a :href="'/'+suggestUser.usn" target="_blank">
-                            <strong>{{suggestUser.name}}</strong> &commat;{{suggestUser.username}}
+                        <a :href="'/'+suggestUser.usn" target="_blank" >
+                            <strong id="name">{{suggestUser.name}}</strong> &commat;{{suggestUser.username}}
                         </a>
                         <a @click="removeSuggested(suggestUser.id)">
                             <i class="fa fa-times"></i>
@@ -99,3 +99,9 @@
         }
     }
 </script>
+
+<style scoped>
+    #name:hover {
+        color: #ABB8C2;
+    }
+</style>

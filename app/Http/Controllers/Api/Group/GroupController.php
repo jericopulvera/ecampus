@@ -45,7 +45,8 @@ class GroupController extends Controller
 
         $week = ['prelim', 'midterm', 'finals'];
 
-        for ($i = 0; $i < count($week); $i++) {
+        $length = count($week);
+        for ($i = 0; $i < $length; $i++) {
             GroupGrade::firstOrCreate([
                 'user_id'  => $user->id,
                 'group_id' => $group->id,

@@ -43,8 +43,6 @@ class GroupPost extends Model
     public function getReadableDateAttribute()
     {
         return $this->created_at->diffForHumans();
-
-        return $this->created_at->toDayDateTimeString();
     }
 
     public function getCommentCountAttribute()
