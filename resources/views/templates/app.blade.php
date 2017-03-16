@@ -11,7 +11,7 @@
         <link href="/css/bulma.css" rel="stylesheet">
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.4.2/sweetalert2.min.css">
+        <link rel="stylesheet" href="/css/sweet2.min.css">
         @stack('css')
            <script>
                window.Laravel = <?php echo json_encode([

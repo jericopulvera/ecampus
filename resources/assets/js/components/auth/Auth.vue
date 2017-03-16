@@ -2,6 +2,36 @@
     
     <div class="container">
         <div class="columns is-vcentered">
+            
+            <div v-if="form == 4" class="column is-4 is-offset-4">
+                <h1 class="title has-text-centered">
+                    Forgot Password
+                </h1>
+
+                    <form @submit.prevent="reset()">
+                        
+                        <div class="box">
+                        <div class="notification is-success" v-show="resetPassword.success">
+                            <a class="delete" @click.prevent="resetPassword.success = false"></a>
+                            Reset password link has been sent. <br> to your email address.
+                        </div>
+                            <label class="label">Email</label>
+                           <p class="control">
+                               <input class="input" type="text" placeholder="Enter email" v-model="resetPassword.email">
+                           </p>
+                           <br>
+                            <p class="control">
+                                <button class="button is-primary" :class="{'is-loading' : loadingButton, 'is-disabled': facebookButton}" style="width: 100%;">Reset Password</button>
+                            </p>
+                        </div>
+                    </form>
+             
+                <p class="has-text-centered">
+                    <a @click="switchForm(2)" :class="[loadingButton ? 'is-disabled' : '', facebookButton ? 'is-disabled' : '']">Register an Account</a> |
+                    <a href="#" :class="[loadingButton ? 'is-disabled' : '', facebookButton ? 'is-disabled' : '']" @click="form = 4">Forgot password</a> |
+                    <a href="/demo-credentials" target="_blank">Demo Credentials</a>
+                </p>
+            </div><!-- LOGIN -->
 
             <!-- LOGIN -->
             <div v-if="form == 1" class="column is-4 is-offset-4">
@@ -23,6 +53,7 @@
                             <p class="control">
                                 <input class="input" type="password" placeholder="●●●●●●●" v-model="loginForm.pass">
                             </p>
+                            <br>
                             <p class="control">
                                 <button class="button is-primary" :class="{'is-loading' : loadingButton, 'is-disabled': facebookButton}" style="width: 100%;">Login</button>
                             </p>
@@ -38,10 +69,10 @@
                             </a>
                         </div>
                     </form>
-                    
+             
                 <p class="has-text-centered">
                     <a @click="switchForm(2)" :class="[loadingButton ? 'is-disabled' : '', facebookButton ? 'is-disabled' : '']">Register an Account</a> |
-                    <a href="#" :class="[loadingButton ? 'is-disabled' : '', facebookButton ? 'is-disabled' : '']">Forgot password</a> |
+                    <a href="#" :class="[loadingButton ? 'is-disabled' : '', facebookButton ? 'is-disabled' : '']" @click="form = 4">Forgot password</a> |
                     <a href="/demo-credentials" target="_blank">Demo Credentials</a>
                 </p>
             </div><!-- LOGIN -->
@@ -261,11 +292,20 @@ export default {
                 course: 'Information Technology',
                 id: null,
             },
+            resetPassword: {
+                email: '',
+                success: false,
+            },
             errors: new Errors()
         }
     },
 
     methods: {
+        reset() {
+            this.resetPassword.success = true;
+            this.resetPassword.email = '';
+        },
+
         switchForm(id){
             this.errors.reset();
             this.form = id;
@@ -313,7 +353,6 @@ export default {
                     this.register.password = '';
                     this.register.password_confirmation = '';
                 });
-           
         }
     }
 }

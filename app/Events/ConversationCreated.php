@@ -7,9 +7,9 @@ use App\Transformers\ConversationTransformer;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class ConversationCreated implements ShouldBroadcast
+class ConversationCreated implements ShouldBroadcastNow
 {
     use InteractsWithSockets;
 

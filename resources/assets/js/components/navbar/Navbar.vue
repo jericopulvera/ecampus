@@ -121,9 +121,6 @@
 		},
 
 		computed: {
-		    ...mapState({
-		        conversationStore: state => state.conversationStore
-		    }),
 
             activeConversationClass() {
                 if (this.$root.route == 'conversations') {
@@ -153,13 +150,6 @@
 			},
 
 			logout() {
-				let state = this.conversationStore;
-				for(let i = 0; i < state.conversations.length; i++) {
-				  Echo.join('conversation.' + state.conversations[i].id)
-				    .leaving((user) => {
-				        commit('LEAVING_USER', user)
-				    })
-				}
 				axios.post('/logout').then(response => {
 					window.location.href="/"
 				});

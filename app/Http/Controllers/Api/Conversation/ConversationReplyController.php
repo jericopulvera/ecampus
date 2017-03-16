@@ -27,7 +27,7 @@ class ConversationReplyController extends Controller
         $conversation->touchLastReply();
 
         broadcast(new ConversationReplyCreated($reply))->toOthers();
-
+        
         return fractal()
             ->item($reply)
             ->parseIncludes(['user', 'parent', 'parent.user', 'parent.users'])

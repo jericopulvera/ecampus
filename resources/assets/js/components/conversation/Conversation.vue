@@ -40,7 +40,7 @@
         </div>
         <div class="panel-block">
             <div class="control">
-                <div class="media" v-for="reply in conversation.replies.data">
+                <div class="media" v-for="reply in conversation.replies.data" v-if="conversation.replies.data.length > 0">
                     <figure class="media-left">
                         <p class="image is-64x64">
                           <img v-bind:src="reply.user.data.avatar" v-bind:alt="reply.user.data.name + ' avatar'">
@@ -55,6 +55,10 @@
                           </p>
                         </div>
                     </div>
+                </div>
+
+                <div class="notification" v-if="conversation.replies.data.length === 0">
+                    No Message yet...
                 </div>
             </div>
         </div>
