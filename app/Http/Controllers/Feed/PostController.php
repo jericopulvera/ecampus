@@ -47,53 +47,6 @@ class PostController extends Controller
             ['path' => request()->url(), 'query' => request()->query()]
         );
 
-        // GET THE FOLLOWING USERS
-        // $following[] = auth()->id();
-        // foreach (auth()->user()->following as $user) {
-        //     $following[] = $user->id;
-        // }
-
-        // // GET THE RANKED POSTS FIRST
-        // $posts = Post::whereIn('user_id', $following)
-        // ->where('time', '!=', 0)
-        // ->orderBy('time', 'desc')
-        // ->get();
-
-        // foreach($posts as $post) {
-        //     // get the interaction value
-        //     $interaction = Interaction::where('user_id', auth()->id())
-        //     ->where('target_id', $post->userId())
-        //     ->first();
-
-        //     // calculate the edge
-        //     if ($interaction !== null) {
-        //         $post->edge = $post->weight * $interaction->affinity * $post->time;
-        //     } else {
-        //         $post->edge = $post->weight * 1 * $post->time;
-        //     }
-        // }
-
-        // // Sort the posts descending basead on the calculated value
-        // $ranked = $posts->sortByDesc(function($post) {
-        //     return sprintf('%-12s%s', $post->edge, $post->created_at);
-        // });
-
-        // // Make a paginator for all the posts
-        // if (request()->query() == null) {
-        //     $page = 1;
-        // } else {
-        //     $page = request()->query()['page'];
-        // }
-
-        // $perPage = 10;
-        // $rankedPosts = new LengthAwarePaginator(
-        //     $ranked->forPage($page, $perPage)->values(),
-        //     count($ranked),
-        //     $perPage,
-        //     $page,
-        //     ['path' => request()->url(), 'query' => request()->query()]
-        // );
-
         return $rankedPosts;
     }
 
@@ -141,7 +94,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('post.show-post');
     }
 
     /**

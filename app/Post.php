@@ -57,7 +57,7 @@ class Post extends Model
      * Attributes
      */
     protected $appends = [
-        'link', 'readableDate', 'likedByCurrentUser',
+        'readableDate', 'likedByCurrentUser',
         'likesCount', 'lastEdited', 'user', 
         'comments', 'commentsCount',
     ];
@@ -77,11 +77,6 @@ class Post extends Model
     public function getUserAttribute()
     {
         return $this->user()->first();
-    }
-
-    public function getLinkAttribute()
-    {
-        return asset('/').'/ajax/single-post/';
     }
 
     public function getReadableDateAttribute()

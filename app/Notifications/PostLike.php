@@ -49,7 +49,7 @@ class PostLike extends Notification implements ShouldQueue
         return [
             'user' => $this->user,
             'post' => $this->post,
-            'message' => $this->user->name . ' Liked one of your posts.',
+            'message' => '<a href="/'.$this->user->usn.'"> '. $this->user->name . ' </a> liked your post <a href="/posts/'.$this->post->id.'">',
         ];
     }
 }

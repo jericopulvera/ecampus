@@ -85,11 +85,6 @@ Route::group(['middleware' => ['web', 'auth']], function () {
             // Group Grade
             Route::post('group/{group}/{user}/update-grade', 'GroupGradeController@updateGrade');
         });
-        // Route::get('/conversations', 'ConversationController@index');
-        // Route::post('/conversations', 'ConversationController@store');
-        // Route::get('/conversations/{conversation}', 'ConversationController@show');
-        // Route::post('/conversations/{conversation}/reply', 'ConversationReplyController@store');
-        // Route::post('/conversations/{conversation}/users', 'ConversationUserController@store');
     });
 
     Route::post('logout', 'Auth\AuthController@logout');

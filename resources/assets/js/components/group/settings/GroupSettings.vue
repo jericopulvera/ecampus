@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div>
 	<form method="POST" action="/groups/create" class="box" v-if="$root.user.id === groupStore.admin.id">
 
 		<label class="label">ROOM</label>
