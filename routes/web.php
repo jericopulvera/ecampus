@@ -40,12 +40,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         // Settings
         Route::get('/settings', 'SettingController@index');
         Route::post('/settings', 'SettingController@update');
-
         Route::resource('academic-term', 'AcademicTermController');
-        // Route::get('/academic-term', 'AcademicTermController@index');
-        // Route::post('/academic-term', 'AcademicTermController@store');
-        // Route::get('/academic-term/{schoolTerm}', 'AcademicTermController@edit');
-        // Route::patch('/academic-term/{schoolTerm}', 'AcademicTermController@update');
 
         // Grades
         Route::get('/grades', 'GradeController@index');
@@ -94,12 +89,18 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('logout', 'Auth\AuthController@logout');
 
     // Conversation
-    Route::get('conversation', 'ConversationController@getConversations');
-    Route::get('show-conversation/{id}', 'ConversationController@showConversation');
-    Route::post('create-conversation', 'ConversationController@createConversation');
-    Route::post('message', 'ConversationController@sendMessage');
-    
+    Route::group(['prefix' => 'webapi', 'namespace' => 'Api\Conversation'], function () {
+        Route::get('/conversations', 'ConversationController@index');
+        Route::post('/conversations', 'ConversationController@store');
+        Route::get('/conversations/{conversation}', 'ConversationController@show');
+        Route::post('/conversations/{conversation}/reply', 'ConversationReplyController@store');
+        Route::post('/conversations/{conversation}/users', 'ConversationUserController@store');
+    });
 
+    Route::get('/conversations', 'ConversationController@index')->name('conversations');
+    Route::get('/conversations/{conversation}', 'ConversationController@show')->name('conversation');
+
+    
     // Posts Controller
     Route::get('posts/my-feed', 'Feed\PostController@myFeed');
     Route::get('posts/user/{usn}', 'Feed\PostController@getUserFeed');

@@ -21,8 +21,16 @@ class BroadcastServiceProvider extends ServiceProvider
          * Authenticate the user's personal channel...
          */
 
+        Broadcast::channel('user.{id}', function ($user, $userId) {
+            return (int) $user->id === (int) $userId;
+        });
+
         Broadcast::channel('App.User.{id}', function ($user, $userId) {
             return (int) $user->id === (int) $userId;
+        });
+
+        Broadcast::channel('conversation.{id}', function ($user, $conversationId) {
+            return $user->isInConversation(Conversation::find($conversationId));
         });
 
         // GROUP
@@ -77,46 +85,6 @@ class BroadcastServiceProvider extends ServiceProvider
 
         Broadcast::channel('comments', function () {
             return true;
-        });
-
-        Broadcast::channel('conversations', function () {
-            return true;
-        });
-
-        Broadcast::channel('conversation.{id}', function ($user, $conversation_id) {
-            $participants = Conversation::find($conversation_id)->participants()->first();
-
-            if ($participants != null) {
-                return [
-                    'id'              => $user->id,
-                    'conversation_id' => $conversation_id,
-                    'image'           => $user->image,
-                    'name'            => $user->name,
-                ];
-            }
-        });
-
-        /*
-         * Matt stauffer laravel echo tutorial...
-         */
-
-        Broadcast::channel('chat-room-presence.{id}', function ($user, $roomId) {
-            if (true) {
-                // Replace with real authorization
-                return [
-                    'id'    => $user->id,
-                    'usn'   => $user->usn,
-                    'name'  => $user->name,
-                    'image' => $user->image,
-                ];
-            }
-        });
-
-        Broadcast::channel('chat-room.{id}', function ($user, $chatroomId) {
-            if (true) {
-                // Replace with real ACL
-                return true;
-            }
         });
     }
 }

@@ -29,9 +29,6 @@
             @if(Auth::check())
 
               <navbar></navbar>
-              <conversation-list></conversation-list>
-              <conversation-create></conversation-create>
-              <conversation-message></conversation-message>
               
               <section class="section main">
                  

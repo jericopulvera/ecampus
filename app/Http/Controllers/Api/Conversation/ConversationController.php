@@ -23,14 +23,14 @@ class ConversationController extends Controller
         return fractal()
             ->collection($conversations)
             ->parseIncludes(['user', 'users'])
-            ->transformWith(new ConversationTransformer())
+            ->transformWith(new ConversationTransformer)
             ->toArray();
     }
 
     public function show(Conversation $conversation)
     {
         $this->authorize('show', $conversation);
-
+        
         if ($conversation->isReply()) {
             abort(404);
         }
@@ -38,15 +38,14 @@ class ConversationController extends Controller
         return fractal()
             ->item($conversation)
             ->parseIncludes(['user', 'users', 'replies', 'replies.user'])
-            ->transformWith(new ConversationTransformer())
+            ->transformWith(new ConversationTransformer)
             ->toArray();
     }
 
     public function store(StoreConversationRequest $request)
-    {
-        $conversation = new Conversation();
+    {   
+        $conversation = new Conversation;
         $conversation->body = $request->body;
-        $conversation->name = $request->name;
         $conversation->user()->associate($request->user());
         $conversation->save();
 
@@ -63,7 +62,7 @@ class ConversationController extends Controller
         return fractal()
             ->item($conversation)
             ->parseIncludes(['user', 'users', 'replies', 'replies.user'])
-            ->transformWith(new ConversationTransformer())
+            ->transformWith(new ConversationTransformer)
             ->toArray();
     }
 }

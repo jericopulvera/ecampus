@@ -72,6 +72,8 @@
                             alert('something went wrong please reload the page.')
                         })
                 }
+
+                this.disable = false
             },
 
             like() {

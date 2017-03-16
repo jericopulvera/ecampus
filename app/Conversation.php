@@ -6,68 +6,46 @@ use Illuminate\Database\Eloquent\Model;
 
 class Conversation extends Model
 {
-    protected $fillable = ['name', 'image'];
+    protected $dates = ['last_reply'];
 
-    public function messages()
+    public function user()
     {
-        return $this->hasMany(Message::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function participants()
+    public function users()
     {
-        return $this->hasMany(ConversationUsers::class);
+        return $this->belongsToMany(User::class);
     }
 
-    protected $appends = ['readableDate', 'latestMessages', 'participants', 'image', 'conversationName'];
-
-    public function getImageAttribute()
+    public function usersExceptCurrentlyAuthenticated()
     {
-        if ($this->participants()->count() === 2) {
-            foreach ($this->participants as $participant) {
-                if ($participant->user_id !== auth()->id()) {
-                    return $participant->user()->first()->image;
-                }
-            }
-
-            return auth()->user()->image;
-        } else {
-            return asset('dist/img/group-default.jpg');
-        }
+        return $this->users()->where('user_id', '!=', \Auth::user()->id);
     }
 
-    public function getReadableDateAttribute()
+    public function replies()
     {
-        if (\Carbon\Carbon::now() > $this->created_at->addDays(4)) {
-            return $this->created_at->toDayDateTimeString();
-        } else {
-            return $this->created_at->diffForHumans();
-        }
+        return $this->hasMany(Conversation::class, 'parent_id')->latestFirst();
     }
 
-    public function getConversationNameAttribute()
+    public function parent()
     {
-        if ($this->participants()->count() === 2) {
-            foreach ($this->participants as $participant) {
-                if ($participant->user_id !== auth()->id()) {
-                    $p = $participant->with('user')->where('user_id', $participant->user_id)->first();
-
-                    return $p->user()->first()->name;
-                }
-            }
-
-            return auth()->user()->name;
-        } else {
-            return $this->name;
-        }
+        return $this->belongsTo(Conversation::class, 'parent_id');
     }
 
-    public function getLatestMessagesAttribute()
+    public function touchLastReply()
     {
-        return Message::with('user')->where('conversation_id', $this->id)->orderBy('created_at', 'desc')->take(20)->get();
+        $this->last_reply = \Carbon\Carbon::now();
+        $this->save();
     }
 
-    public function getParticipantsAttribute()
+    public function isReply()
     {
-        return ConversationUsers::where('conversation_id', $this->id)->get();
+        return $this->parent_id !== null;
+    }
+
+    public function scopeLatestFirst($query)
+    {
+        return $query->orderBy('created_at', 'desc');
     }
 }

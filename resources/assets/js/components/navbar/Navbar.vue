@@ -2,9 +2,9 @@
 <nav class="nav has-shadow is-fixed">
 	<div class="container">
 		<div class="nav-left">
-			<a href="/" class="nav-item is-tab" :class="this.$root.path == '/' ? 'is-active' : ''"><i class="fa fa-home"></i> &nbsp; Home</a>
-			<notification-tab></notification-tab>
-			<message-tab></message-tab>
+			<a href="/" class="nav-item is-tab" :class="$root.path == '/' ? 'is-active' : ''"><i class="fa fa-home"></i> &nbsp; Home</a>
+			<notification-tab :class="$root.path == 'notifications' ? 'is-active' : ''"></notification-tab>
+			<message-tab  :class="activeConversationClass"></message-tab>
 		</div>
 		<div class="nav-center">
 			<a class="nav-item" href="/">
@@ -123,7 +123,15 @@
 		computed: {
 		    ...mapState({
 		        conversationStore: state => state.conversationStore
-		    })
+		    }),
+
+            activeConversationClass() {
+                if (this.$root.route == 'conversations') {
+                    return 'is-active';
+                } else if (this.$root.route == 'conversation') {
+                    return 'is-active';
+                }
+            }
 		    
 		},
 

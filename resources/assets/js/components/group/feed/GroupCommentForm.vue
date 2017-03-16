@@ -55,6 +55,7 @@
               alert('something went wrong please reload the page')
             })
         }
+        this.loading = false
       }
     }
   }

@@ -22,15 +22,12 @@ Vue.component('search-tab', require('./components/navbar/SearchTab.vue'));
 Vue.component('message-tab', require('./components/navbar/MessageTab.vue'));
 
 // Conversation 
-Vue.component('conversation-list', require('./components/conversation/ConversationList.vue'));
-Vue.component('conversation-message', require('./components/conversation/ConversationMessage.vue'));
-Vue.component('conversation-create', require('./components/conversation/ConversationCreate.vue'));
-Vue.component('add-user', require('./components/conversation/AddUser.vue'));
-
-// Vue.component('conversations', require('./components/conversation/Conversations.vue'));
-// Vue.component('conversation', require('./components/conversation/Conversation.vue'));
-// Vue.component('conversation-form', require('./components/conversation/forms/ConversationForm.vue'));
-// Vue.component('conversation-reply-form', require('./components/conversation/forms/ConversationReplyForm.vue'));
+Vue.component('conversation-form', require('./components/conversation/forms/ConversationForm.vue'));
+Vue.component('conversation-reply-form', require('./components/conversation/forms/ConversationReplyForm.vue'));
+Vue.component('conversation-add-user-form', require('./components/conversation/forms/ConversationAddUserForm.vue'));
+Vue.component('conversation', require('./components/conversation/Conversation.vue'));
+Vue.component('conversations', require('./components/conversation/Conversations.vue'));
+Vue.component('conversations-dashboard', require('./components/conversation/ConversationsDashboard.vue'));
 
 // Group 
 Vue.component('group', require('./components/group/Group.vue'));

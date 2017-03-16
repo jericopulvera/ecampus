@@ -45,7 +45,7 @@
                 serverSide: false,
                 ajax: '{!! url('/admin/api/users') !!}',
                 columns: [
-                    { data: 'usn', name: 'USN' },
+                    { data: 'usn', name: 'usn' },
                     { data: 'name', name: 'name' },
                     { data: 'privilege', name: 'privilege' },
                     { data: 'followerCount', name: 'followers', searchable: false },

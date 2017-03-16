@@ -276,7 +276,7 @@
             editComment(id) {
                 if (this.commentHolder.body != this.commentBody) {
                     axios.patch('comment/'+id, {body: this.commentBody}).then(response => {
-                        this.postOptions = false;
+                        this.commentOptions = false;
                         this.commentHolder.body = this.commentBody;
                     }).catch(error => {
                         alert('this comment has already been deleted');
@@ -290,7 +290,7 @@
                         this.commentOptions = false;
                     })
                 } else {
-                    this.postOptions = false;
+                    this.commentOptions = false;
                 }
             },
 

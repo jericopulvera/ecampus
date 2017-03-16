@@ -1,5 +1,5 @@
 <template>
-	<a href="/notifications" class="nav-item is-tab" :class="this.$root.path == 'notifications' ? 'is-active' : ''">
+	<a href="/notifications" class="nav-item is-tab">
 		<i class="fa fa-bell-o"></i> &nbsp; Notifications 
 		<span class="tag is-danger" v-if="unreadCount > 0">
 		  	{{unreadCount}}

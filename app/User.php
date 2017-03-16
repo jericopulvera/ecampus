@@ -28,6 +28,7 @@ class User extends Authenticatable
     public function toSearchableArray()
     {
         $array = [
+            'id'      => $this->id,
             'usn'      => $this->usn,
             'username' => $this->username,
             'avatar'   => $this->image,
@@ -60,11 +61,6 @@ class User extends Authenticatable
     public function groups()
     {
         return $this->belongsToMany(Group::class)->withPivot('role', 'status');
-    }
-
-    public function messages()
-    {
-        return $this->hasMany(Message::class);
     }
 
     public function likes()
