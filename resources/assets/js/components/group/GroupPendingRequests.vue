@@ -31,7 +31,6 @@
           this.load();
             Echo.private('join-requests.'+group.slug).listen('JoinGroupRequested', (event) => {
                 this.load();
-                noty({ text: event.user.name + ' requested to join this class.' , type: 'sucess', timeout: 5000});
             })
         },
 

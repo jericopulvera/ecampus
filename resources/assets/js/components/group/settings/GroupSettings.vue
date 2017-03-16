@@ -144,7 +144,7 @@
 		  </span>
 
 		</p>
-	
+	           <br>
 			<p class="control">
 				<button class="button is-primary is-fullwidth" @click.prevent="updateSettings">Submit</button>
 			</p>

@@ -38,7 +38,7 @@
                 </div>
                 
                 <!-- COMMENT LIST -->
-                <group-comment v-for="comment in post.comments" :comment="comment" :key="comment.id"></group-comment>
+                <group-comment v-for="comment in comments" :comment="comment" :key="comment.id"></group-comment>
 
                 <!-- REPLY FORM  -->
                 <group-comment-form :id="post.id" :key="post.id"></group-comment-form>
@@ -61,12 +61,15 @@
         props: ['post'],
 
         mounted () {
+            this.comments = this.post.comments;
             eventHub.$on('remove-post-comment', this.removeComment);
+            eventHub.$on('new-comment', this.pushComment)
         },
 
         data () {
             return {
                 disable: false,
+                comments: [],
             }
         },
 
@@ -85,6 +88,10 @@
 
         methods: {
             pluralize,
+
+            pushComment(comment) {
+                this.comments.push(comment)
+            },
 
             removeComment(id) {
                 for (let i = 0; i < this.post.comments.length; i++) {
@@ -125,7 +132,7 @@
 
                 if (confirm) {
                     eventHub.$emit('remove-post', id)
-                    axios.delete('/webapi/group/comment/'+id)
+                    axios.delete('/webapi/group/post/'+id)
                         .then(response => {
                         })
                         .catch(error => {

@@ -65,7 +65,7 @@
 
                 if (confirm) {
                     eventHub.$emit('remove-post-comment', id)
-                    axios.delete('/group/comment/'+id+'/'+group.id)
+                    axios.delete('/webapi/group/comment/'+id+'/'+group.slug)
                         .then(response => {
                         })
                         .catch(error => {

@@ -109,7 +109,7 @@ class User extends Authenticatable
 
     public function getImageAttribute()
     {
-        $exists = Storage::disk('local')->exists('/public/avatars/'.$this->usn.'.jpg');
+        $exists = Storage::disk('local')->exists('/dist/images/avatars/'.$this->usn.'.jpg');
 
         if ( ! $exists) {
             if ( ! $this->avatar) {
@@ -118,7 +118,7 @@ class User extends Authenticatable
             return $this->avatar;
         }
 
-        return asset('storage/avatars/'.$this->usn.'.jpg');
+        return asset('dist/images/avatars/'.$this->usn.'.jpg');
     }
 
     public function getLikesCountAttribute()

@@ -3,9 +3,28 @@
       <div class="section profile-heading">
         <div class="columns">
           <div class="column is-2">
-            <div class="image is-128x128 avatar">
-              <img :src="user.image">
+            <div class="control">
+                
+               <a href="#" @click="openFile" v-if="originalImage">
+                 <div class="image is-128x128 avatar" title="click to upload new image">
+                   <img :src="baseImage">
+                 </div>
+              </a>
+               
+                 <div class="image is-128x128 avatar" title="click to upload new image" v-if="! originalImage">
+                    <a href="#" @click="openFile" v-if="! originalImage">
+                      <img :src="image">
+                   </a>
+                   <a href="" class="button is-info" v-if="!originalImage" style="width: 100%;" @click.prevent="upload">Upload</a>
+                 </div>
+            
+
+              
             </div>
+    
+        
+
+         <input type="file" ref="file" @change="onFileChange" style="display: none;">
           </div>
           <div class="column is-4 name">
             <p class="control" :class="{'is-loading': loading}">
@@ -51,10 +70,14 @@
         mounted () {
             this.user = user;
             this.name = user.name;
+            this.baseImage = user.image;
         },
 
         data () {
             return {
+                originalImage: true,
+                baseImage: null,
+                image: {},
                 user: {},
                 name: '',
                 tab: 2,
@@ -70,7 +93,42 @@
         },
 
         methods: {
-            editName: function(event) {
+            upload() {
+                axios.post('/webapi/upload', {image: this.image}).then(response => {
+                    noty({ 
+                        text: 'Your Avatar has been changed successfully.', 
+                        type: 'success',
+                        timeout: 2000,
+                    });
+                    
+                    window.location.reload();
+                })
+            },
+
+            openFile() {
+                this.$refs.file.click();
+            },
+
+            onFileChange(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                     if (!files.length)
+                       return;
+                     this.createImage(files[0]);
+            },
+
+            createImage(file) {
+                  this.image = new Image();
+                  var reader = new FileReader();
+                  var vm = this;
+
+                  reader.onload = (e) => {
+                    vm.image = e.target.result;
+                  };
+                  this.originalImage = false
+                  reader.readAsDataURL(file);
+            },
+
+            editName(event) {
                 this.clicks++ 
                 if(this.clicks === 1) {
                    this.timer = setTimeout(() => {

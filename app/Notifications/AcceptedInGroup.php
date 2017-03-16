@@ -45,7 +45,7 @@ class AcceptedInGroup extends Notification implements ShouldQueue
     {
         return [
             'group' => $this->group,
-            'message' => 'You are now a student in <a href="/groups/'.$this->group->slug.'">'. $this->group->subject .'-'. $this->group->section .'</a> class group.',
+            'message' => 'You can now access <a href="/groups/'.$this->group->slug.'">'. $this->group->subject .'-'. $this->group->section .'</a> class group page.',
             'noty_type' => 'success',
         ];
     }

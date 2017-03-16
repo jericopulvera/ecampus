@@ -37,7 +37,7 @@
         data () {
             return {
                 posts: [],
-                show: true,
+                show: false,
                 body: '',
                 title: '',
                 time: 30,
@@ -61,6 +61,7 @@
 
             addPost (post) {
                 this.posts.unshift(post);
+                this.show = false
             },
 
             deletePost (id) {
@@ -86,7 +87,9 @@
                   }
                 }
              })
-
+                if (this.posts.length === 0) {
+                    this.show = true;
+                }
             },
 
             onInfinite() {},

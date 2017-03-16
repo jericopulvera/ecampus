@@ -1,61 +1,53 @@
 <template>
-    <div class="content">
-        <div class="card" v-for="student in groupStore.students" style="margin: 20px 0;" v-if="groupStore.students.length > 0">
-            <header class="card-header has-text-centered">
-                <p class="card-header-title">
-                    <a :href="'/'+student.usn" target="_blank"> {{student.name.toUpperCase()}} | {{student.usn}} | {{student.course}} </a>
-                </p>
-            </header>
-            <div class="card-content">
-                <div class="content">
-                    <nav class="level">
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <p class="heading">Prelim Total</p>
-                                <p class="title">{{calculateGrades(student.grades[0])}}</p>
-                            </div>
+<div class="content">
+    <div class="card" v-for="student in groupStore.students" style="margin: 20px 0;" v-if="groupStore.students.length > 0">
+        <header class="card-header has-text-centered">
+            <p class="card-header-title">
+                <a :href="'/'+student.usn" target="_blank"> {{student.name.toUpperCase()}} | {{student.usn}} | {{student.course}} </a>
+            </p>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <nav class="level">
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Prelim Total</p>
+                            <p class="title">{{calculateGrades(student.grades[0])}}</p>
                         </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <p class="heading">Midterm Total</p>
-                                <p class="title">{{calculateGrades(student.grades[1])}}</p>
-                            </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Midterm Total</p>
+                            <p class="title">{{calculateGrades(student.grades[1])}}</p>
                         </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <p class="heading">Finals Total</p>
-                                <p class="title">{{calculateGrades(student.grades[2])}}</p>
-                            </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Finals Total</p>
+                            <p class="title">{{calculateGrades(student.grades[2])}}</p>
                         </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <p class="heading">Total Grade</p>
-                                <p class="title">{{calculateTotalGrade(student.grades)}}</p>
-                            </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Total Grade</p>
+                            <p class="title">{{calculateTotalGrade(student.grades)}}</p>
                         </div>
-                    </nav>
-                </div>
+                    </div>
+                </nav>
             </div>
-            <footer class="card-footer">
-                <a class="card-footer-item" @click="editGrade(student.id, 'prelim')">Prelim</a>
-                <a class="card-footer-item" @click="editGrade(student.id, 'midterm')">Midterm</a>
-                <a class="card-footer-item" @click="editGrade(student.id, 'finals')">Finals</a>
-                <a class="card-footer-item" @click="show = true;">Submit</a>
-            </footer>
+        </div>
+        <footer class="card-footer">
+            <a class="card-footer-item" @click="editGrade(student.id, 'prelim')">Prelim</a>
+            <a class="card-footer-item" @click="editGrade(student.id, 'midterm')">Midterm</a>
+            <a class="card-footer-item" @click="editGrade(student.id, 'finals')">Finals</a>
+            <a class="card-footer-item" @click="show = true;">Submit</a>
+        </footer>
         <group-grade-submit :student="student" v-if="show"></group-grade-submit>
     </div>
-
-    <article class="message is-info  has-text-centered" v-else>
-        <div class="message-header">
-            <div class="title">Info</div>
-        </div>
-        <div class="message-body">
-            No Students
-        </div>
-    </article>
-
-
-    </div>
+<div class="notification" v-if="groupStore.students.length == 0">
+    No Students yet...
+</div>
+</div>
 </template>
 
 <script>

@@ -21,7 +21,7 @@
                            </p>
                            <br>
                             <p class="control">
-                                <button class="button is-primary" :class="{'is-loading' : loadingButton, 'is-disabled': facebookButton}" style="width: 100%;">Reset Password</button>
+                                <button class="button is-info" :class="{'is-loading' : loadingButton, 'is-disabled': facebookButton}" style="width: 100%;">Reset Password</button>
                             </p>
                         </div>
                     </form>
@@ -55,9 +55,9 @@
                             </p>
                             <br>
                             <p class="control">
-                                <button class="button is-primary" :class="{'is-loading' : loadingButton, 'is-disabled': facebookButton}" style="width: 100%;">Login</button>
+                                <button class="button is-info" :class="{'is-loading' : loadingButton, 'is-disabled': facebookButton}" style="width: 100%;">Login</button>
                             </p>
-                            <hr>
+                           <!--  <hr>
                             <a href="/redirect" id="fb-btn" class="button is-info"
                                 :class="{'is-loading' : facebookButton}"
                                 @click="facebookButton = true"
@@ -66,7 +66,7 @@
                             <i class="fa fa-facebook"></i>
                             </span>
                             <span>Login with facebook</span>
-                            </a>
+                            </a> -->
                         </div>
                     </form>
              
@@ -171,7 +171,7 @@
                         <hr>
 
                         <div class="control">
-                            <button class="button is-primary"
+                            <button class="button is-info"
                                 :class="{'is-loading' : loadingButton}"
                                 :disabled="errors.any()"
                                 style="width: 100%;">Register</button>
@@ -234,7 +234,7 @@
                         </div>
 
                         <div class="control">
-                            <button class="button is-primary"
+                            <button class="button is-info"
                                 :class="{'is-loading' : loadingButton, 'is-disabled': facebookButton}"
                                 style="width:100%;"
                                 >Submit

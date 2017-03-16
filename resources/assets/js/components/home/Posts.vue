@@ -112,9 +112,9 @@
                 <!-- REPLY -->
             </div>
 
-            <div class="media-right" v-if="$root.user.privilege == 'Dean' || $root.user.id == this.post.user.id">
-                <a @click="postOptions = true" v-if="$root.user.id == this.post.user.id"><i class="fa fa-minus-circle"></i></a>
-                <a class="delete" v-else @click="deletePost(this.post.id)"></a>
+            <div class="media-right" v-if="$root.user.privilege == 'Dean' || $root.user.id == post.user.id">
+                <a @click="postOptions = true" v-if="$root.user.id == post.user.id"><i class="fa fa-minus-circle"></i></a>
+                <a class="delete" v-else @click="deletePost(post.id)"></a>
             </div>
         </article>
 
@@ -126,9 +126,13 @@
                 </header>
                 <section class="modal-card-body">
                     <div class="media-content">
-                        <p class="control">
-                            <textarea class="textarea" maxlength="2200" placeholder="Write something..." v-model="body"></textarea>
-                        </p>
+                        <div class="control">
+                            <div class="field">
+                                  <label class="label">Body</label>
+                                  <textarea class="textarea" maxlength="2200" placeholder="Write something..." v-model="body"></textarea>
+                            </div>
+                        </div>
+                      
                     </div>
                 </section>
                 <footer class="modal-card-foot">

@@ -13,8 +13,8 @@
                         No more posts
                     </span>
                     <span slot="no-results">
-                      <div class="notification is-info" v-show="show">
-                        <p>Your feed is currently empty, </p> <p> Follow more users to see more posts in your newsfeed. </p>
+                      <div class="notification" v-show="show">
+                        <p> No posts</p>
                       </div>
                     </span>
                 </infinite-loading>
@@ -37,7 +37,7 @@
         data () {
             return {
                 posts: [],
-                show: true,
+                show: false,
                 body: '',
                 title: '',
                 time: 30,
@@ -61,6 +61,7 @@
 
             addPost (post) {
                 this.posts.unshift(post);
+                this.show = false;
             },
 
             deletePost (id) {
@@ -87,6 +88,9 @@
                 }
              })
 
+                if (this.posts.length === 0) {
+                    this.show = true;
+                }
             },
 
             onInfinite() {},

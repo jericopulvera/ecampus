@@ -28,7 +28,7 @@
 				</div>
 			</div>
 			<footer class="card-footer">
-				<a class="card-footer-item" target="_blank" :href="'/'+professor.usn" v-if="$root.user.id === groupStore.admin.id">Pass Subject</a>
+				<a class="card-footer-item" v-if="$root.user.id === groupStore.admin.id" @click.prevent="passSubject(professor.usn)">Pass Subject</a>
 				<a class="card-footer-item" target="_blank" :href="'/'+professor.usn">View Profile</a>
 				<a class="card-footer-item" @click="expelUser(professor.usn)" v-if="$root.user.id === groupStore.admin.id">Expel</a>
 			</footer>
@@ -80,7 +80,15 @@
 
 				    
 				}
-			}
+			},
+
+            passSubject(usn) {
+                axios.post('/webapi/group/pass-subject/'+ group.slug + '/' + usn)
+                    .then(response => {
+                        noty({ text: 'Successfully changed this subjects professor.', type: 'success'});
+                        this.$store.dispatch('fetchMembers', group.slug);
+                    })
+            }
 		  
 		}
 	}

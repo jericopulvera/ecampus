@@ -49,7 +49,8 @@
           this.loading = true;
           axios.post('/webapi/group/comment/'+this.id, {body: this.body})
             .then(response => {
-                this.$emit('load-post')
+                this.body = ''
+                eventHub.$emit('new-comment', response.data)
             })
             .catch(error => {
               alert('something went wrong please reload the page')

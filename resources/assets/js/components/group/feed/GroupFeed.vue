@@ -17,7 +17,6 @@
 	export default {
 		created () {
 			this.fetchClassPosts()
-
 			this.$on('load-post', this.fetchClassPosts);
 			eventHub.$on('remove-post', this.removePost);
 		},
@@ -35,7 +34,6 @@
 			removePost (id) {
 				for (let i = 0; i < this.posts.length; i++) {
 					if (this.posts[i].id == id) {
-						console.log(this.posts[i].id)
 						this.posts.splice(i,1);
 						break;
 					}

@@ -8,11 +8,6 @@ class Post extends Model
 {
     protected $fillable = ['body', 'weight', 'time'];
 
-    public function getWeightAttribute($value)
-    {
-        return ($value + $this->getLikesCountAttribute() + $this->commentValue()) / 2;
-    }
-
     public function humanCreatedAt()
     {
         return $this->created_at->diffForHumans();

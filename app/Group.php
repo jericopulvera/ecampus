@@ -22,7 +22,7 @@ class Group extends Model
 
     public function getTitleAttribute()
     {
-        return $this->subject.'    |    SSECTION:'.$this->section.' |    ROOM:'.$this->room.'    |    '.$this->term->semester . ' Trimester ' . $this->term->year.' ';
+        return $this->slug.' | ROOM:'.$this->room.' ';
     }
 
     public function getDowAttribute($value)

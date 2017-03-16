@@ -15,7 +15,7 @@
                             <small v-text="notification.created_at"></small>
                         </div>
 
-                        <div class="notification has-text-centered" v-if="notifications.length === 0">
+                        <div class="notification has-text-centered" v-if="showMessage">
                             <strong> No notifications </strong>
                         </div>
                     </div>
@@ -39,7 +39,8 @@
 
         data () {
             return {
-                notifications: []
+                notifications: [],
+                showMessage: false,
             }
         },
 
@@ -51,7 +52,11 @@
             getNotifications() {
                 axios.get('/get-notifications').then((response) => {
                     this.notifications = response.data
+                    if (response.data.length === 0) {
+                        this.showMessage = true
+                    }
                  })
+                
             },
 
             pushNotification(notification) {

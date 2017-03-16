@@ -72,7 +72,7 @@ class PostController extends Controller
         $check = auth()->user()->privilege;
 
         if ($check == 'Dean') {
-            $weight = 100;
+            $weight = 1000 * 150;
         } else {
             $weight = 1;
         }
@@ -94,7 +94,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('post.show-post');
+        $post = Post::find($id);
+        $classes = auth()->user()->userGroups;
+        return view('post.show-post', compact('post', 'classes'));
     }
 
     /**
@@ -121,6 +123,7 @@ class PostController extends Controller
     {
         $post->update([
             'body'  => request('body'),
+            'weight' => request('weight')
         ]);
     }
 

@@ -64,6 +64,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
             Route::post('group/leave-class/{group}/{user}', 'GroupController@leaveClass');
             Route::post('group/kick/{group}/{user}', 'GroupController@kickMember');
 
+            Route::post('group/pass-subject/{group}/{user}', 'GroupController@passProfessorRole');
             Route::post('group/settings/{group}', 'GroupSettingController@updateSettings');
 
             // Group Post
@@ -84,18 +85,22 @@ Route::group(['middleware' => ['web', 'auth']], function () {
             // Group Grade
             Route::post('group/{group}/{user}/update-grade', 'GroupGradeController@updateGrade');
         });
+
+        // Conversation
+        Route::group(['namespace' => 'Conversation'], function () {
+            Route::get('/conversations', 'ConversationController@index');
+            Route::post('/conversations', 'ConversationController@store');
+            Route::get('/conversations/{conversation}', 'ConversationController@show');
+            Route::post('/conversations/{conversation}/reply', 'ConversationReplyController@store');
+            Route::post('/conversations/{conversation}/users', 'ConversationUserController@store');
+        });
+
+        Route::post('/upload', 'UploadController@store');
     });
 
     Route::post('logout', 'Auth\AuthController@logout');
 
-    // Conversation
-    Route::group(['prefix' => 'webapi', 'namespace' => 'Api\Conversation'], function () {
-        Route::get('/conversations', 'ConversationController@index');
-        Route::post('/conversations', 'ConversationController@store');
-        Route::get('/conversations/{conversation}', 'ConversationController@show');
-        Route::post('/conversations/{conversation}/reply', 'ConversationReplyController@store');
-        Route::post('/conversations/{conversation}/users', 'ConversationUserController@store');
-    });
+   
 
     Route::get('/conversations', 'ConversationController@index')->name('conversations');
     Route::get('/conversations/{conversation}', 'ConversationController@show')->name('conversation');

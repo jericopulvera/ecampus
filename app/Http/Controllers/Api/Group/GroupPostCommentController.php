@@ -26,9 +26,9 @@ class GroupPostCommentController extends Controller
         }
     }
 
-    public function destroy($id, $group_id)
+    public function destroy($id, $slug)
     {
-        $check = Auth::user()->groups()->where('group_id', $group_id)->where('user_id', Auth::id())->first();
+        $check = Auth::user()->groups()->where('slug', $slug)->where('user_id', Auth::id())->first();
         if ($check != null) {
             $comment = GroupComment::find($id);
             $comment->delete();
