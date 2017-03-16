@@ -1,6 +1,7 @@
 <template>
-    <div class="columns">
-
+    <div class="columns" v-cloak>
+        
+        <transition name="slide-fade">
         <div class="column is-6" style="order: 1; ">
             <div class="panel has-text-centered" style="background-color: white;">
                 <div class="panel-heading" style="background-color: white;">
@@ -14,13 +15,14 @@
                             <small v-text="notification.created_at"></small>
                         </div>
 
-                        <div class="notification is-warning has-text-centered" v-else v-cloak>
+                        <div class="notification is-warning has-text-centered" v-else>
                             <strong> No notifications </strong>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </transition>
         
         <left-panel style="order: 0;"></left-panel>
         <right-panel style="order: 2;"></right-panel>
@@ -60,6 +62,17 @@
 </script>
 
 <style scoped>
+    .slide-fade-enter-active {
+      transition: all .3s ease;
+    }
+    .slide-fade-leave-active {
+      transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active for <2.1.8 */ {
+      transform: translateX(10px);
+      opacity: 0;
+    }
     .has-text-muted {
       color: #95A5A6;
     }

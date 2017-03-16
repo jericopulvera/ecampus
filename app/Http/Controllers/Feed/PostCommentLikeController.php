@@ -61,7 +61,7 @@ class PostCommentLikeController extends Controller
         // endif;
 
         if (auth()->user()->id != $comment->user->id):
-            User::find($comment->user_id)->notify(new CommentLike($comment, $post, auth()->user()));
+            User::find($comment->user_id)->notify(new CommentLike($comment, auth()->user()));
         endif;
 
         // broadcast like

@@ -986,7 +986,7 @@ a.box:active {
 }
 
 .button.is-primary:hover, .button.is-primary.is-hovered {
-  background-color: #00c4a7;
+  background-color: #7a7a7a;
   border-color: transparent;
   color: #fff;
 }

@@ -46,10 +46,12 @@ class PostLike extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
+        $body = str_limit($this->post->body, 15);
+        $message = sprintf('<a href="/%s">%s</a> likes your post <a href="/posts/%s">%s</a>,', $this->user->usn, $this->user->name, $this->post->id, $body);
         return [
             'user' => $this->user,
             'post' => $this->post,
-            'message' => '<a href="/'.$this->user->usn.'"> '. $this->user->name . ' </a> liked your post <a href="/posts/'.$this->post->id.'">',
+            'message' => $message,
         ];
     }
 }

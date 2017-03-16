@@ -51,11 +51,11 @@
 		<div class="modal" :class="{ 'is-active': form }" style="z-index: 101;">
 			<div class="modal-background"></div>
 			<div class="modal-content">
-                <div class="panel">
+                <nav class="panel">
                     <div class="panel-heading">
                         New Post
                     </div>
-                    <div class="panel-block">
+                    <div class="panel-block" style="background-color: whitesmoke;">
                         <div class="control">
                             <p class="control">
                                 <textarea class="textarea" maxlength="2000" placeholder="Write something..." v-model="body"></textarea>
@@ -67,7 +67,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </nav>
 			</div>
 			<button class="modal-close" @click="toggleForm"></button>
 		</div>

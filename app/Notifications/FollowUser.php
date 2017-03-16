@@ -45,11 +45,8 @@ class FollowUser extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
-        if ($this->follow) {
-            $message = '<a href="/'.$this->user->usn.'">'. $this->user->name. '</a> followed you';
-        } else {
-            $message = '<a href="/'.$this->user->usn.'">'. $this->user->name. '</a> unfollowed you';
-        }
+        $message = sprintf('<a href="/%s">%s</a> ', $this->user->usn, $this->user->name);     
+        if ($this->follow) { $message .= "followed you"; } else { $message .= "unfollowed you"; }
         return [
             'user'   => $this->user,
             'message' => $message,

@@ -30,7 +30,7 @@
 				    	noty({ 
                             text: notification.message,
                             type: notification.noty_type,
-                            timeout: 3000,
+                            timeout: 4000,
                         });
 
                         if (this.$root.path != 'notifications'){
