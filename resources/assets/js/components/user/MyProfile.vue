@@ -68,9 +68,8 @@
 
     export default {
         mounted () {
-            this.user = user;
-            this.name = user.name;
-            this.baseImage = user.image;
+            this.assignData()
+            this.listen()
         },
 
         data () {
@@ -93,14 +92,26 @@
         },
 
         methods: {
-            upload() {
-                axios.post('/webapi/upload', {image: this.image}).then(response => {
+            assignData() {
+                this.user = user;
+                this.name = user.name;
+                this.baseImage = user.image;
+            },
+
+            listen() {
+                if (window.localStorage.getItem('upload-success')) {
                     noty({ 
                         text: 'Your Avatar has been changed successfully.', 
                         type: 'success',
                         timeout: 2000,
                     });
-                    
+                    window.localStorage.removeItem('upload-success')
+                }
+            },
+
+            upload() {
+                axios.post('/webapi/upload', {image: this.image}).then(response => {
+                    window.localStorage.setItem('upload-success', 1);
                     window.location.reload();
                 })
             },
