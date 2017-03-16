@@ -17,6 +17,7 @@
                window.Laravel = <?php echo json_encode([
                    'user' => Auth::user(),
                    'path' => request()->path(),
+                   'route' => Route::currentRouteName(),
                ]); ?>
            </script>
 

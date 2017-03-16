@@ -155,5 +155,5 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('/grade', 'GradeController@store');
 
     // Search Controller
-    Route::get('{user}', 'SearchController@index');
+    Route::get('{user}', 'SearchController@index')->name('user.profile');
 });
