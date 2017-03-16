@@ -31,7 +31,11 @@ class SettingController extends Controller
     		'term_id' => $request->term_id,
     	]);
 
-    	notify()->flash('Current Academic Term Has Been Updated', 'success');
+        notify()->flash('Active Academic Term.', 'success', [
+            'timer' => 3000,
+            'text'  => 'has been updated.',
+        ]);
+
     	return redirect()->back();
     }
 }

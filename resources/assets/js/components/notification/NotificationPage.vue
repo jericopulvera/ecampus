@@ -1,20 +1,20 @@
 <template>
     <div class="columns">
 
-        <div class="column is-6" style="order: 1;">
-            <div class="panel container has-text-centered">
-                <div class="panel-heading">
+        <div class="column is-6" style="order: 1; ">
+            <div class="panel has-text-centered" style="background-color: white;">
+                <div class="panel-heading" style="background-color: white;">
                     Notifications
                 </div>
-                <div class="panel-block">
+                <div class="panel-block" style="background-color: white;">
                     <div class="control">
-                        <div class="notification" v-for="notification in notifications" :key="notification.id">
+                        <div class="notification" v-if="notifications.length > 0" v-for="notification in notifications" :key="notification.id" style="background-color: white;">
                             <strong v-html="notification.data.message"></strong>
                             <br>
                             <small v-text="notification.created_at"></small>
                         </div>
 
-                        <div class="notification is-warning has-text-centered" v-if="notifications.length === 0">
+                        <div class="notification is-warning has-text-centered" v-else v-cloak>
                             <strong> No notifications </strong>
                         </div>
                     </div>

@@ -1,8 +1,11 @@
 <template>
     <div class="column is-3">
-        <div class="card is-fullwidth" v-if="true == false">
-            <header class="card-header">
-            </header>
+        <div class="card is-fullwidth">
+            <div class="card-image">
+                <figure class="image is-1half-by1">
+                  <img src="/dist/img/cover.jpg" alt="Image">
+                </figure>
+              </div>
             <div class="card-content">
                 <a class="card-avatar">
                     <img class="image is-72x72" :src="$root.user.image">
