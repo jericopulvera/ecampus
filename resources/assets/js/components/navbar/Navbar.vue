@@ -37,9 +37,9 @@
     				<span></span>
     				<div class="dropdown-content" v-show="expand">
     					<a :href="'/admin/dashboard'" v-if="$root.user.privilege == 'Dean'">Admin Panel</a>
-                        <a :href="'/'+$root.user.usn"> View profile </a>
-                        <a href="/calendar"> School Calendar </a>
+                        <a :href="'/'+$root.user.usn"> My Profile </a>
                         <a :href="'/schedule/'+$root.user.usn" v-if="$root.user.privilege != 'Student'"> My Schedule </a>
+                        <a href="/calendar"> School Calendar </a>
     					<a href="/groups"> Groups </a>
     					<hr class="is-paddingless is-marginless">
     					<a @click="logout()"> Log out </a>

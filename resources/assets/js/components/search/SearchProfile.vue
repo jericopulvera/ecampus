@@ -9,10 +9,14 @@
             </div>
             <div class="column is-4 name">
                 <p>
-                    <span class="title is-bold">{{ user.name }}</span>
-                    <button class="button is-primary follow" :class="{'is-loading': loading }" @click="followUser(user.usn)">{{isFollowing ? 'Unfollow' : 'Follow'}}</button>
+                    <span class="title is-bold" :title="user.usn">{{ user.name }}</span> <small :title="user.usn">@{{ user.username }}</small>
                 </p>
-                <p class="tagline">The users profile bio would go here, of course. It could be two lines</p>
+                <p>
+                <br>
+                <div class="block is-pulled-left">
+                    <a :href="'/schedule/'+user.usn" class="button is-info" style="margin-left: 5px;">View Schedule</a> &nbsp;
+                    <a class="button is-info follow" :class="{'is-loading': loading }" @click="followUser(user.usn)">{{isFollowing ? 'Unfollow' : 'Follow'}}</a>
+                </div>
             </div>
             <div class="column is-2 followers has-text-centered">
                 <p class="stat-val">{{user.followerCount}}</p>

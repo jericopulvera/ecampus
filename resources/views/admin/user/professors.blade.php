@@ -47,9 +47,9 @@
                 columns: [
                     { data: 'usn', name: 'USN' },
                     { data: 'name', name: 'name' },
-                    { data: 'followerCount', name: 'followers' },
-                    { data: 'followCount', name: 'following' },
-                    { data: 'postCount', name: 'posts' },
+                    { data: 'followerCount', name: 'followers', searchable: false },
+                    { data: 'followCount', name: 'following', searchable: false },
+                    { data: 'postCount', name: 'posts', searchable: false },
                     { data: 'action', name: 'action', orderable: false, searchable: false }
                 ]
             });

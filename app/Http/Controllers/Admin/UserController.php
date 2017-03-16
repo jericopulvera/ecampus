@@ -16,7 +16,7 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('admin.user.users');
+        return view('admin.user.user-index');
     }
 
     public function professors()
@@ -56,6 +56,40 @@ class UserController extends Controller
         notify()->flash('Success!', 'success', [
             'timer' => 3000,
             'text' => 'You have successfully created a professor account',
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function show(User $user)
+    {
+        $schedule = $user->groups()->get();
+        return view('admin.user.user-show', compact('user', 'schedule'));
+    }
+
+    public function block(User $user)
+    {
+        $user->update([
+            'active' => 0,
+        ]);
+
+        notify()->flash( $user->name, 'success', [
+            'timer' => 3000,
+            'text' => 'Is now blocked from this site.',
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function unblock(User $user)
+    {
+        $user->update([
+            'active' => 1,
+        ]);
+
+        notify()->flash( $user->name, 'success', [
+            'timer' => 3000,
+            'text' => 'can now access this site again.',
         ]);
 
         return redirect()->back();

@@ -24,11 +24,15 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/students', 'UserController@students');
         Route::get('/users/create', 'UserController@create');
         Route::post('/users/create', 'UserController@store');
+        Route::get('/users/{user}', 'UserController@show');
+        Route::post('/users/{user}/block', 'UserController@block')->name('admin-block-user');
+        Route::patch('/users/{user}/unblock', 'UserController@unblock')->name('admin-unblock-user');
 
         // Users API
         Route::get('/api/users', 'Api\UserController@index');
         Route::get('/api/professors', 'Api\UserController@professors');
         Route::get('/api/students', 'Api\UserController@students');
+        Route::get('/api/users/{user}/grades', 'Api\UserController@grades')->name('admin-user-grades');
 
         // Users
         Route::get('/posts', 'PostController@index');

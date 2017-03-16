@@ -49,11 +49,14 @@ class PostComment extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
+        $body = str_limit($this->post->body, 15);
+
+        $message = sprintf('<a href="/%s">%s</a> replied on your post <a href="/posts/%s">%s</a>,', $this->user->usn, $this->user->name, $this->post->id, $body);
+
         return [
-            'user'    => $this->user,
-            'comment' => $this->comment,
-            'post'    => $this->post,
-            'message' => $this->user->name . ' Commented on one of your posts.',
+            'user' => $this->user,
+            'post' => $this->post,
+            'message' => $message,
         ];
     }
 }

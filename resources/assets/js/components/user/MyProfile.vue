@@ -10,12 +10,10 @@
           <div class="column is-4 name">
             <p class="control" :class="{'is-loading': loading}">
               <input class="input" :class="{'is-disabled': loading}" v-if="edit.name" v-model="name" @keydown.enter="updateName">
-              <span class="title is-bold" @click="editName" v-else>{{ name }}</span>
+              <span class="title is-bold" @click="editName" title="Double click to edit" v-else>{{ name }} <small> @{{ user.username }} </small></span>
             </p>
             <p>
-              <span class="subtitle">@{{ user.username }}</span><br>
               <span class="subtitle">{{ user.usn }}</span><br>
-              <span class="subtitle">{{ user.privilege }}</span>
             </p>        
           </div>
           <div class="column is-2 followers has-text-centered">
