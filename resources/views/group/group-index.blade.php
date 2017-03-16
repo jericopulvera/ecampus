@@ -2,7 +2,7 @@
 @section('title') {!! @$group->subject !!} @endsection
 
 @section('content')
-<div class="container">
+<div class="container body">
  	<group></group>
 </div>
 @endsection

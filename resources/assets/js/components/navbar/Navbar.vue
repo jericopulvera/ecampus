@@ -12,65 +12,85 @@
 			</a>
 		</div>
 		
-		<!-- MOBILE TABLET TOGGLE -->
-		<span class="nav-toggle">
-			<span></span>
-			<span></span>
-			<span></span>
-		</span>
-		<div class="nav-right nav-menu">
-			<search-tab></search-tab>
-			<!-- DESKTOP TOGGLE --> <!-- CLICK SHOW OPTIONS -->
-			<span class="nav-item">
-				<a class="button" @click="toggleForm">
-					<span class="icon">
-						<i class="fa fa-pencil-square-o"></i>
-					</span>
-					<span>New Post</span>
-				</a>
-			</span>
+    <!-- MOBILE TABLET TOGGLE -->
+    <span class="nav-toggle" @click="showMobileOptions">
+        <span></span>
+        <span></span>
+        <span></span>
+    </span>
+    
+    <div class="nav-menu is-hidden-desktop" :class="{ 'is-active': mobileExpand }">
+        <span class="nav-item">
+            <a class="button" @click="toggleForm">
+                <span class="icon">
+                    <i class="fa fa-pencil-square-o"></i>
+                </span>
+                <span>New Post</span>
+            </a>
+        </span>
+        <a class="nav-item" :href="'/admin/dashboard'" v-if="$root.user.privilege == 'Dean'">Admin Panel</a>
+        <a class="nav-item" :href="'/'+$root.user.usn"> My Profile </a>
+        <a class="nav-item" :href="'/schedule/'+$root.user.usn" v-if="$root.user.privilege != 'Student'"> My Schedule </a>
+        <a class="nav-item" href="/calendar"> School Calendar </a>
+        <a class="nav-item" href="/groups"> Groups </a>
+        <a class="nav-item" @click="logout()"> Log out </a>
+    </div>
 
-            <click-outside :handler="handleClickOutside">
-    			<div class="nav-toggle is-flex-desktop is-hidden-touch" :class="{ 'is-active': expand }" @click="showOptions" >
-    				<span></span>
-    				<span></span>
-    				<span></span>
-    				<div class="dropdown-content" v-show="expand">
-    					<a :href="'/admin/dashboard'" v-if="$root.user.privilege == 'Dean'">Admin Panel</a>
-                        <a :href="'/'+$root.user.usn"> My Profile </a>
-                        <a :href="'/schedule/'+$root.user.usn" v-if="$root.user.privilege != 'Student'"> My Schedule </a>
-                        <a href="/calendar"> School Calendar </a>
-    					<a href="/groups"> Groups </a>
-    					<hr class="is-paddingless is-marginless">
-    					<a @click="logout()"> Log out </a>
-    				</div>
-    			</div>
-			</click-outside>
+    <div class="nav-right nav-menu">
+        <search-tab></search-tab>
+        
+        <span class="nav-item">
+            <a class="button" @click="toggleForm">
+                <span class="icon">
+                    <i class="fa fa-pencil-square-o"></i>
+                </span>
+                <span>New Post</span>
+            </a>
+        </span>
 
-		</div>
-		<div class="modal" :class="{ 'is-active': form }" style="z-index: 101;">
-			<div class="modal-background"></div>
-			<div class="modal-content">
-                <nav class="panel">
-                    <div class="panel-heading">
-                        New Post
-                    </div>
-                    <div class="panel-block" style="background-color: whitesmoke;">
-                        <div class="control">
-                            <p class="control">
-                                <textarea class="textarea" maxlength="2000" placeholder="Write something..." v-model="body"></textarea>
-                            </p>
-                            <div class="has-text-centered">
-                                <a class="button is-info is-fullwidth"
-                                    :class="{'is-loading' : loading, 'is-disabled': loading}"
-                                @click="createPost()">SUBMIT</a>
-                            </div>
+        <click-outside :handler="handleClickOutside">
+        <!-- DESKTOP OPTIONS TOGGLE -->
+        <div class="nav-toggle is-flex-desktop is-hidden-touch" :class="{ 'is-active': expand }" @click="showOptions" >
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class="dropdown-content" v-show="expand">
+                <a :href="'/admin/dashboard'" v-if="$root.user.privilege == 'Dean'">Admin Panel</a>
+                <a :href="'/'+$root.user.usn"> My Profile </a>
+                <a :href="'/schedule/'+$root.user.usn" v-if="$root.user.privilege != 'Student'"> My Schedule </a>
+                <a href="/calendar"> School Calendar </a>
+                <a href="/groups"> Groups </a>
+                <hr class="is-paddingless is-marginless">
+                <a @click="logout()"> Log out </a>
+            </div>
+        </div>
+        </click-outside>
+    </div>
+    
+    <!-- NEW POST MODAL -->
+    <div class="modal" :class="{ 'is-active': form }" style="z-index: 101;">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <nav class="panel">
+                <div class="panel-heading">
+                    New Post
+                </div>
+                <div class="panel-block" style="background-color: whitesmoke;">
+                    <div class="control">
+                        <p class="control">
+                            <textarea class="textarea" maxlength="2000" placeholder="Write something..." v-model="body"></textarea>
+                        </p>
+                        <div class="has-text-centered">
+                            <a class="button is-info is-fullwidth"
+                                :class="{'is-loading' : loading, 'is-disabled': loading}"
+                            @click="createPost()">SUBMIT</a>
                         </div>
                     </div>
-                </nav>
-			</div>
-			<button class="modal-close" @click="toggleForm"></button>
-		</div>
+                </div>
+            </nav>
+        </div>
+        <button class="modal-close" @click="toggleForm"></button>
+    </div>
 	</div>
 </nav>
 </template>
@@ -114,6 +134,7 @@
 		data () {
 			return {
 				expand: false,
+                mobileExpand: false,
 				form: false,			
 				body: '',
 				loading: false,
@@ -148,6 +169,10 @@
 			showOptions() {
 				this.expand = !this.expand;
 			},
+
+            showMobileOptions() {
+                this.mobileExpand = !this.mobileExpand;
+            },
 
 			logout() {
 				axios.post('/logout').then(response => {

@@ -1,5 +1,5 @@
 <template>
-    <div class="column is-3">
+    <div class="column is-3 is-hidden-touch">
         <div class="box trending has-text-centered" v-if="$root.user.userGroups.length > 1">
             <p class="trend-title"><span class="title is-5">My Classes</span>
             </p>
@@ -9,7 +9,7 @@
             </p>
         </div>
 
-        <div class="box" v-if="suggestions.length > 0">
+        <div class="box " v-if="suggestions.length > 0">
             <p><span class="title is-5">Follow Suggestions</span> </p>
             <hr>
 

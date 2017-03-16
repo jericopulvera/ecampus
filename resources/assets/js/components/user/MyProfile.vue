@@ -17,8 +17,6 @@
                    </a>
                    <a href="" class="button is-info" v-if="!originalImage" style="width: 100%;" @click.prevent="upload">Upload</a>
                  </div>
-            
-
               
             </div>
     
