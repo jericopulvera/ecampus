@@ -15,7 +15,7 @@
                             <small v-text="notification.created_at"></small>
                         </div>
 
-                        <div class="notification is-warning has-text-centered" v-else>
+                        <div class="notification has-text-centered" v-if="notifications.length === 0">
                             <strong> No notifications </strong>
                         </div>
                     </div>

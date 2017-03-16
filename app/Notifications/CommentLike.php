@@ -14,14 +14,17 @@ class CommentLike extends Notification implements ShouldQueue
 
     public $user;
 
+    public $post;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($comment, $user)
+    public function __construct($comment, $post, $user)
     {
         $this->comment = $comment;
+        $this->post = $post;
         $this->user = $user;
     }
 
@@ -47,7 +50,7 @@ class CommentLike extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         $body = str_limit($this->comment->body, 15);
-        $message = sprintf('<a href="/%s">%s</a> likes your comment <a href="/comments/%s">%s</a>,', $this->user->usn, $this->user->name, $this->comment->id, $body);
+        $message = sprintf('<a href="/%s">%s</a> likes your comment <a href="/posts/%s">%s</a>,', $this->user->usn, $this->user->name, $this->post->id, $body);
         return [
             'user' => $this->user,
             'comment' => $this->comment,

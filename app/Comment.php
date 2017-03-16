@@ -43,7 +43,7 @@ class Comment extends Model
 
     public function getReadableDateAttribute()
     {
-        return $this->created_at->toDayDateTimeString();
+        return $this->created_at->diffForHumans();
     }
 
     public function getLikesCountAttribute()

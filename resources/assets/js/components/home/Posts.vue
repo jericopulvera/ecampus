@@ -2,7 +2,7 @@
     <div class="box">
 
         <article class="media">
-            
+        
             <figure class="media-left">
                 <p class="image is-64x64">
                     <img :src="post.user.image">
@@ -19,7 +19,7 @@
                         <small class="is-full-width">
 
                         <a :class="{'is-disabled': disable}" @click.prevent="like">{{likeText}}</a> ·
-                        <a @click.prevent="reply()">Reply</a> ·
+                        <a @click.prevent="reply()">Comment</a> ·
                         <abbr :title="post.readableDate"> <a>{{post.readableDate}}</a> </abbr>
                         <br>
                         <a> {{post.likesCount}}
@@ -116,7 +116,6 @@
                 <a @click="postOptions = true" v-if="$root.user.id == this.post.user.id"><i class="fa fa-minus-circle"></i></a>
                 <a class="delete" v-else @click="deletePost(this.post.id)"></a>
             </div>
-
         </article>
 
         <div class="modal is-active" v-if="postOptions">
