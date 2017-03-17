@@ -10,7 +10,7 @@
         <link rel="icon" href="/dist/img/logo.PNG" type="image/x-icon" />
         <link href="/css/bulma.css" rel="stylesheet">
         
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link href="/admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/sweet2.min.css">
         @stack('css')
            <script>
@@ -51,7 +51,7 @@
 
         @stack('server-to-vue')
         
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="/admin/vendors/jquery/dist/jquery.min.js"></script>
         <script src="/js/jquery.noty.packaged.min.js"></script>
         <script src="/js/back-to-top.js"></script>
         <script src="//cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>

@@ -116,7 +116,6 @@ class UsersTableSeeder extends Seeder
                'name'      => $faker->unique()->name,
                'username'  => $faker->unique()->username,
                'email'     => $faker->unique()->email,
-               // 'avatar'    => $faker->imageUrl(100, 100, 'cats'),
                'privilege' => 'Student',
                'course'    => $course,
                'password'  => bcrypt('123123'),
