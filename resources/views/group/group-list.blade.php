@@ -7,7 +7,7 @@
         Class Group List
     </p>
     <div class="panel-block">
-        <div class="control" style="width: 100%; overflow: auto;">
+        <div class="control">
             <table class="table is-bordered is-striped" id="groups-table">
                 <thead>
                     <tr>
@@ -35,7 +35,6 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/fc-3.2.2/fh-3.1.2/datatables.min.js"></script>
 <script src="/js/datatable/dataTables.bulma.min.js"></script>
 <script>
-
   $(function() {
         $('#groups-table').DataTable({
             searching: true,
@@ -53,7 +52,6 @@
             ]
         });
     });
-
   function joinRequest(id)
   {
      $.ajax({
@@ -71,7 +69,5 @@
          }
      });
   }
-
-
 </script>
 @endpush

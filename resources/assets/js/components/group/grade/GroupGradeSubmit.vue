@@ -125,7 +125,7 @@
                 'incomplete': incomplete,
             }
 
-            axios.post('/webapi/grade', data).then(response => {
+            axios.post('/grade', data).then(response => {
                 swal('Success', 'Grade has been submitted', 'success');
             }).catch(error => {
 

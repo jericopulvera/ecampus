@@ -1,8 +1,8 @@
 <template>
     <div class="columns" v-cloak>
-        
+        <left-panel style="order: 0;"></left-panel>
         <transition name="slide-fade">
-        <div class="column is-6" style="order: 1; ">
+        <div class="column is-6" style="order: 1;">
             <div class="panel has-text-centered" style="background-color: white;">
                 <div class="panel-heading" style="background-color: white;">
                     Notifications
@@ -24,7 +24,7 @@
         </div>
         </transition>
         
-        <left-panel style="order: 0;"></left-panel>
+        
         <right-panel style="order: 2;"></right-panel>
         
     </div>
