@@ -4738,6 +4738,7 @@ label.panel-block:hover {
       -ms-flex: none;
           flex: none;
   width: 100%;
+  overflow: auto;
 }
 
 .columns.is-mobile > .column.is-offset-12 {

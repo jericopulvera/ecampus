@@ -30,7 +30,7 @@
         </span>
         <a class="nav-item" :href="'/admin/dashboard'" v-if="$root.user.privilege == 'Dean'">Admin Panel</a>
         <a class="nav-item" :href="'/'+$root.user.usn"> My Profile </a>
-        <a class="nav-item" :href="'/schedule/'+$root.user.usn" v-if="$root.user.privilege != 'Student'"> My Schedule </a>
+        <a class="nav-item" :href="'/schedule/'+$root.user.usn"> My Schedule </a>
         <a class="nav-item" href="/calendar"> School Calendar </a>
         <a class="nav-item" href="/groups"> Groups </a>
         <a class="nav-item" @click="logout()"> Log out </a>
@@ -57,7 +57,7 @@
             <div class="dropdown-content" v-show="expand">
                 <a :href="'/admin/dashboard'" v-if="$root.user.privilege == 'Dean'">Admin Panel</a>
                 <a :href="'/'+$root.user.usn"> My Profile </a>
-                <a :href="'/schedule/'+$root.user.usn" v-if="$root.user.privilege != 'Student'"> My Schedule </a>
+                <a :href="'/schedule/'+$root.user.usn"> My Schedule </a>
                 <a href="/calendar"> School Calendar </a>
                 <a href="/groups"> Groups </a>
                 <hr class="is-paddingless is-marginless">
