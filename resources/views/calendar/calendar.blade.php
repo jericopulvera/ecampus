@@ -3,9 +3,18 @@
 @section('content')
 
 <div class="container body">
-    <div class="box">
-        <div id="calendar"></div>
-    </div>
+  <div class="panel">
+      <div class="panel-heading">
+        School Calendar
+      </div>
+      <div class="panel-block">
+        <div class="control">
+          <div id="calendar"></div>
+        </div>
+      </div>
+  </div>
+        
+
 </div>
 
 <!-- CREATE EVENT -->
@@ -79,23 +88,22 @@ $(document).ready(function() {
         event.preventDefault();
         $("#create-event").removeClass('is-active');
     });
-    
-
-    $('#calendar').fullCalendar({
-      defaultDate: date,
-      displayEventTime: false,
-      editable: false,
-      eventLimit: true, // allow "more" link when too many events
-      events: event,
-        eventClick:  function(event, jsEvent, view) {
-        window.location.href = '/calendar/event/'+event.id;
-    },
-        dayClick: function(date, jsEvent, view) {
-            $("#create-event").addClass("is-active");
-            $("#day").val(date._d);
-        },
-    });
   });
+
+$('#calendar').fullCalendar({
+  defaultDate: date,
+  displayEventTime: false,
+  editable: false,
+  eventLimit: true, // allow "more" link when too many events
+  events: event,
+    eventClick:  function(event, jsEvent, view) {
+    window.location.href = '/calendar/event/'+event.id;
+},
+    dayClick: function(date, jsEvent, view) {
+        $("#create-event").addClass("is-active");
+        $("#day").val(date._d);
+    },
+});
 </script>
 
 <script>
