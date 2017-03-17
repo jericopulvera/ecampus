@@ -108,7 +108,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     
     // Posts Controller
     Route::get('posts/my-feed', 'Feed\PostController@myFeed');
-    Route::get('posts/user/{usn}', 'Feed\PostController@getUserFeed');
+    Route::get('posts/user/{id}', 'Feed\PostController@getUserFeed');
     Route::resource('posts', 'Feed\PostController');
 
     // Posts Likes Controller

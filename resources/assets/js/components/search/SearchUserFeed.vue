@@ -74,7 +74,7 @@
             },
 
             fetchPosts () {
-                axios.get('/posts/user/'+this.user.usn).then((response) => {
+                axios.get('/posts/user/'+user.id).then((response) => {
                 if(response.data.data.length == 0) {
                     this.posts = response.data.data
                     this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
