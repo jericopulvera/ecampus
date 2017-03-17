@@ -7,7 +7,7 @@
         Class Group List
     </p>
     <div class="panel-block">
-        <div class="control table-responsive">
+        <div class="control" style="width: 100%; overflow: auto;">
             <table class="table is-bordered is-striped" id="groups-table">
                 <thead>
                     <tr>
@@ -38,11 +38,7 @@
 
   $(function() {
         $('#groups-table').DataTable({
-            lengthChange: false,
             searching: true,
-            ordering: true,
-            info: true,
-            autoWidth: true,
             ajax: '{!! url('/webapi/group/datatables') !!}',
             columns: [
                 { data: 'professor', name: 'professor' },

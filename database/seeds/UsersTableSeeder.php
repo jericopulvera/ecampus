@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
 
         $user = User::create([
            'USN'       => '1400',
-           'name'      => 'Geo A. Jomoc',
+           'name'      => 'Geovanni A. Jomoc',
            'username'  => 'Geo',
            'email'     => 'geo@gmail.com',
            'privilege' => 'Professor',
@@ -78,7 +78,7 @@ class UsersTableSeeder extends Seeder
     
         
         // PROFESSORS
-        foreach(range(1,10) as $index) {
+        foreach(range(1,5) as $index) {
              $create = User::create([
                 'usn'       => $faker->unique()->numberBetween($min = 10000000000, $max = 99999999999),
                 'name'      => $faker->unique()->name,
@@ -97,7 +97,7 @@ class UsersTableSeeder extends Seeder
 
         // STUDENTS
         $cs = 1; $it = 1; $coe = 1;
-        foreach (range(1, 500) as $index) {
+        foreach (range(1, 50) as $index) {
             $course = $faker->randomElement($array = ['IT', 'COE', 'CS']);
 
             if ($course == 'CS') {
