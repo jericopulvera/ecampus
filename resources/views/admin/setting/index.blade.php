@@ -24,18 +24,14 @@
         <div class="x_panel">
             <form action="/admin/settings" method="POST" role="form">
                 {{ csrf_field() }}
-                @foreach ($academic_terms as $term)
                 <div class="form-group">
-                    <div class="row">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="term_id" id="input" value="{{ $term->id }}" {{ $term->id === $setting->term->id ? 'checked' : '' }}>
-                                {{ $term->semester }} Trimester - School Year {{ $term->year }}
-                            </label>
-                        </div>
-                    </div>
+                    <label>Change Active Semester</label>
+                        <select class="form-control" name="term_id">
+                            @foreach($academic_terms as $term)
+                                <option  value="{{ $term->id }}" {{ $term->id === $setting->term->id ? 'selected' : '' }}> {{ $term->semester }} Trimester - School Year {{ $term->year }} </option>
+                            @endforeach
+                        </select>
                 </div>
-                @endforeach
                 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
