@@ -48,7 +48,7 @@ class PostCommentController extends Controller
 
         // Notify
         if (auth()->user()->id != $post->user->id):
-            User::find($post->user_id)->notify(new PostComment($comment, auth()->user(), $post));
+            User::find($post->user_id)->notify(new PostComment(auth()->user(), $post));
         endif;
 
         // broadcast

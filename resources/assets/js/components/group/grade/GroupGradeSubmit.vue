@@ -45,8 +45,9 @@
                 </div>
             </div>
             <footer class="card-footer">
-                <a class="card-footer-item" @click="submitGrade(false)">Submit grade</a>
-                <a class="card-footer-item" @click="submitGrade(true)">Mark as incomplete</a>
+                <a class="card-footer-item" @click="submitGrade()">Submit</a>
+                <a class="card-footer-item" @click="submitGrade('IC')">Incomplete</a>
+                <a class="card-footer-item" @click="submitGrade('D')">Drop</a>
                 <a class="card-footer-item" @click="closeModal">Close</a>
             </footer>
         </div>
@@ -115,14 +116,14 @@
             })
           },
 
-          confirm(incomplete) {
+          confirm(mark) {
             let data = {
                 'student_id': this.student.id,
                 'prof_id': this.$root.user.id,
                 'subject': group.subject,
                 'section': group.section,
                 'grade': this.calculateTotalGrade(this.student.grades),
-                'incomplete': incomplete,
+                'mark': mark,
             }
 
             axios.post('/grade', data).then(response => {

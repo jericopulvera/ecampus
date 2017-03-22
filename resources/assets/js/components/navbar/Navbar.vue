@@ -4,7 +4,7 @@
 		<div class="nav-left">
 			<a href="/" class="nav-item is-tab" :class="$root.path == '/' ? 'is-active' : ''"><i class="fa fa-home"></i> &nbsp; Home</a>
 			<notification-tab :class="$root.path == 'notifications' ? 'is-active' : ''"></notification-tab>
-			<message-tab  :class="activeConversationClass"></message-tab>
+			<!-- <message-tab  :class="activeConversationClass"></message-tab> -->
 		</div>
 		<div class="nav-center">
 			<a class="nav-item" href="/">

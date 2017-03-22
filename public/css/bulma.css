@@ -4220,6 +4220,7 @@ a.nav-item.is-tab.is-active {
 
 .panel {
   font-size: 1rem;
+  background-color: white;
 }
 
 .panel:not(:last-child) {

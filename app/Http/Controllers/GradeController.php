@@ -11,8 +11,8 @@ class GradeController extends Controller
 {
     public function store(Request $request)
     {
-        $request->mark = GradeRepository::convertGrade($request->grade, $request->incomplete);
-
+        $request->mark = GradeRepository::convertGrade($request->grade, $request->mark);
+        
         $request->term_id = Setting::first()->term_id;
 
         $exists = Grade::where('user_id', $request->student_id)

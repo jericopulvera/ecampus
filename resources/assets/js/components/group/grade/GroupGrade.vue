@@ -40,10 +40,10 @@
             <a class="card-footer-item" @click="editGrade(student.id, 'prelim')">Prelim</a>
             <a class="card-footer-item" @click="editGrade(student.id, 'midterm')">Midterm</a>
             <a class="card-footer-item" @click="editGrade(student.id, 'finals')">Finals</a>
-            <a class="card-footer-item" @click="show = true;">Submit</a>
+            <a class="card-footer-item" @click="submit(student)">Submit</a>
         </footer>
-        <group-grade-submit :student="student" v-if="show"></group-grade-submit>
     </div>
+        <group-grade-submit :student="student" v-if="show"></group-grade-submit>
 <div class="notification" v-if="groupStore.students.length == 0">
     No Students yet...
 </div>
@@ -57,6 +57,7 @@
 		data () {
 			return {
 				show: false,
+                student: {},
 			}
 		},
 
@@ -71,6 +72,11 @@
 		},
 
 		methods: {
+          submit(student) {
+            this.show = true
+            this.student = student
+          },
+
           closeSubmit() {
             this.show = false
           },

@@ -49,7 +49,6 @@
 				      source: autocomplete.sources.hits(index, { hitsPerPage: 5 }),
 				      displayKey: 'name',
 				      templates: {
-                footer: "<div class='frame is-marginless is-paddingless'><small>Powered by </small><span class='helper'><img id='drop-image' class='is-marginless is-paddingless' src='/dist/img/Algolia_logo_bg-white.svg' style=''/></span> </div>",
                 empty: '<div class="has-text-centered">No result</div>',
 				        suggestion: function(suggestion) {
 							var sugTemplate = "<a href=/"+suggestion.usn+"><img id='drop-image' src='"+ suggestion.avatar +"'/><strong>@"+ suggestion._highlightResult.username.value +"</strong><strong style='color: #8899a6'> "+suggestion._highlightResult.usn.value +"</strong></a>"

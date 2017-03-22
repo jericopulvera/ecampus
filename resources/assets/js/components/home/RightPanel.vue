@@ -1,42 +1,19 @@
 <template>
     <div class="column is-3 is-hidden-touch">
-        <div class="box trending has-text-centered" v-if="$root.user.userGroups.length > 1">
-            <p class="trend-title"><span class="title is-5">My Classes</span>
-            </p>
-
-            <p class="trend-hashtag" v-for="group in $root.user.userGroups">
-                <a :href="'/groups/'+group.slug">{{group.slug}}</a>
-            </p>
-        </div>
-
-        <div class="box " v-if="suggestions.length > 0">
-            <p><span class="title is-5">Follow Suggestions</span> </p>
-            <hr>
-
-            <div class="columns" v-for="suggestUser in suggestions" :key="suggestUser.id">
-                <div class="column is-3 is-marginless">
-                    <div class="image">
-                        <img :src="suggestUser.image">
-                    </div>
-                </div>
-                <div class="column is-9">
-                    <p>
-                        <a :href="'/'+suggestUser.usn" target="_blank" >
-                            <strong id="name">{{suggestUser.name}}</strong> &commat;{{suggestUser.username}}
-                        </a>
-                        <a @click="removeSuggested(suggestUser.id)">
-                            <i class="fa fa-times"></i>
-                        </a>
+        <div class="panel has-text-centered">
+            <div class="panel-heading">
+                <p class="trend-title"><span class="title is-5">My Classes</span>
+                </p>    
+            </div>
+            <div class="panel-block">
+                <div class="control"  v-if="$root.user.userGroups.length > 1">
+                    <p class="trend-hashtag has-text-centered" v-for="group in $root.user.userGroups">
+                        <a :href="'/groups/'+group.slug">{{group.subject}} - {{group.section}}</a>
                     </p>
-                    <a class="button is-info is-small" @click="follow(suggestUser.usn)">
-                        <span>
-                                Follow
-                        </span>
-                    </a>
                 </div>
             </div>
         </div>
-
+      
     </div>
 </template>
 

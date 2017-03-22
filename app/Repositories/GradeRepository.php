@@ -3,10 +3,10 @@
 namespace App\Repositories;
 
 class GradeRepository {
-    public static function convertGrade($grade, $incomplete)
+    public static function convertGrade($grade, $mark)
     {
-        if ($incomplete) {
-            return 'IC';
+        if ($mark) {
+            return $mark;
         } elseif ($grade >=  100) {
             return 'A+';
         } elseif ($grade >= 95) {

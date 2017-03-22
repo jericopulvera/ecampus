@@ -5,17 +5,20 @@
         <right-panel style="order: 2;" :user="$root.user"></right-panel>
         
         <div class="column is-6" style="order: 1;">
-           
-            <posts v-for="post in posts" :post="post" :key="post.id"></posts>
+            
+            <div class="panel">
+                <div class="panel-heading">
+                    Newsfeed
+                </div>
+                 <posts v-for="post in posts" :post="post" :key="post.id"></posts>
+            </div>
 
                 <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
                     <span slot="no-more">
                         No more posts
                     </span>
                     <span slot="no-results">
-                      <div class="notification is-info" v-show="show">
-                        <p>Your feed is currently empty, </p> <p> Follow more users to see more posts in your newsfeed. </p>
-                      </div>
+                      No more posts
                     </span>
                 </infinite-loading>
               

@@ -35,7 +35,7 @@ class GradeController extends Controller
     public function failedGrades()
     {
         $data = collect();
-        foreach (Grade::whereIn('mark', ['IC', 'F'])->get() as $grade) {
+        foreach (Grade::whereIn('mark', ['IC', 'F', 'D'])->get() as $grade) {
             $grade->usn = $grade->user->usn;
             $grade->name = $grade->user->name;
             $grade->course = $grade->user->course;

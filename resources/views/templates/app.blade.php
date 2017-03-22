@@ -12,6 +12,11 @@
         
         <link href="/admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/sweet2.min.css">
+        <style>
+            html {
+                overflow: auto;
+            }
+        </style>
         @stack('css')
            <script>
                window.Laravel = <?php echo json_encode([

@@ -10,13 +10,13 @@
             {{ $user->name }} - Schedule
         @endif
         </span>
-        <span class="is-pulled-right">
+        {{-- <span class="is-pulled-right">
             @if(auth()->user()->id === $user->id)
                 <a href="/{{$user->usn}}">Go back to profile page</a>
             @else
                 <a href="/{{$user->usn}}">Click to view profile</a>
             @endif
-        </span>
+        </span> --}}
     </p>
     <div class="panel-block" >
         <div class="control">
@@ -58,7 +58,7 @@
         header: {
             left: null,
             center: null,
-            right: 'listWeek, agendaWeek'
+            right: 'listWeek'
         },
         defaultView: 'listWeek',
         events: schedule

@@ -1,43 +1,18 @@
 <template>
     <div class="column is-3">
-       <!--  <div class="box trending has-text-centered" v-if="user.userGroups.length > 1">
-            <p class="trend-title"><span class="title is-5">My Classes</span>
-            </p>
-
-            <p class="trend-hashtag" v-for="group in user.userGroups">
-                <a :href="'/groups/'+group.slug">{{group.subject}}</a>
-            </p>
-        </div> -->
-
-        <div class="box" v-if="suggestions.length > 0">
-            <p><span class="title is-5">Follow Suggestions</span> </p>
-            <hr>
-
-            <div class="columns" v-for="suggestUser in suggestions" :key="suggestUser.id">
-                <div class="column is-3 is-marginless">
-                    <div class="image">
-                        <img :src="suggestUser.image">
-                    </div>
-                </div>
-                <div class="column is-9">
-                    <p>
-                        <a href="#">
-                            <strong>{{suggestUser.name}}</strong> &commat;{{suggestUser.suggestUsername}}
-                        </a>
-                        <a @click="removeSuggested(suggestUser.id)">
-                            <i class="fa fa-times"></i>
-                        </a>
+        <div class="panel has-text-centered">
+            <div class="panel-heading">
+                <p class="trend-title"><span class="title is-5">{{ user.name }} Classes</span>
+                </p>   
+            </div>
+            <div class="panel-block">
+                <div class="control"  v-if="user.userGroups.length > 1">
+                    <p class="trend-hashtag has-text-centered" v-for="group in user.userGroups">
+                        <a :href="'/groups/'+group.slug">{{group.subject}}</a>
                     </p>
-                    <a class="button is-info is-small" @click="follow(suggestUser.usn)">
-                        <span>
-                                Follow
-                        </span>
-                    </a>
                 </div>
             </div>
-            
         </div>
-
     </div>
 </template>
 

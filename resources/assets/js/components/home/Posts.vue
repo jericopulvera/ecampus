@@ -1,14 +1,14 @@
 <template>
-    <div class="box">
-
+  
+<div class="panel-block">
+    <div class="control">
         <article class="media">
-        
             <figure class="media-left">
                 <p class="image is-64x64">
                     <img :src="post.user.image">
                 </p>
             </figure>
-           
+            
             <div class="media-content">
                 <div class="content">
                     <p>
@@ -16,156 +16,88 @@
                         <br>
                         {{post.body}}
                     </p>
-                        <small class="is-full-width">
-
-                        <a :class="{'is-disabled': disable}" @click.prevent="like">{{likeText}}</a> ·
-                        <a @click.prevent="reply()">Comment</a> ·
-                        <abbr :title="post.readableDate"> <a>{{post.readableDate}}</a> </abbr>
-                        <br>
-                        <a> {{post.likesCount}}
-                            {{ pluralize('like', post.likesCount) }} ·
-                            {{post.comments.length}}
-                            {{ pluralize('comment', post.commentsCount) }}
-                        </a>
+                    <small class="is-full-width">
+                    <a :class="{'is-disabled': disable}" @click.prevent="like">{{likeText}}</a> ·
+                    <a @click.prevent="reply()">Comment</a> ·
+                    <abbr :title="post.readableDate"> <a>{{post.readableDate}}</a> </abbr>
+                    <br>
+                    <a> {{post.likesCount}}
+                        {{ pluralize('like', post.likesCount) }} ·
+                        {{post.comments.length}}
+                        {{ pluralize('comment', post.commentsCount) }}
+                    </a>
+                    </small>
+                    <br>
+                    <a @click="viewPreviousComments"
+                        v-if="post.comments.length < post.commentsCount">
+                        <small>View previous comments </small>
+                    </a>
+                    <a v-if="post.comments.length < post.commentsCount">
+                        <small class="is-pulled-right">· {{post.comments.length}} of {{ post.commentsCount}}
                         </small>
-                        <br>
-                        <a @click="viewPreviousComments"
-                            v-if="post.comments.length < post.commentsCount">
-                            <small>View previous comments </small>
-                        </a>
-                        <a v-if="post.comments.length < post.commentsCount">
-                            <small class="is-pulled-right">· {{post.comments.length}} of {{ post.commentsCount}}
+                    </a>
+                </p>
+            </div>
+            
+            <article class="media" v-if="post.comments.length > 0" v-for="comment in comments" :key="comment.id">
+                <figure class="media-left">
+                    <p class="image is-48x48">
+                        <img :src="comment.user.image">
+                    </p>
+                </figure>
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <a href="#">
+                                <strong>{{comment.user.name}}</strong> &commat;{{comment.user.username}}
+                            </a>
+                            <br>
+                            {{comment.body}}
+                            <br>
+                            <small>
+                            <a v-if="comment.likedByCurrentUser" @click="likeComment(comment.id)">Unlike</a>
+                            <a v-else @click="likeComment(comment.id)">Like</a> ·
+                            <a @click="reply(comment.user.username)">Reply</a> ·
+                            {{comment.readableDate}} · {{comment.likesCount}} {{ pluralize('like', comment.likeCount) }}
                             </small>
-                        </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="media-right">
+                    <a
+                        v-if="$root.user.id == comment.user.id ||
+                            $root.user.id == post.user.id" 
+                        @click="deleteComment(comment.id)">
+                        <i class="fa fa-times-circle"></i>
+                    </a>
+                </div>
+            </article>
+            <!-- REPLY FORM -->
+            <article class="media" v-show="check">
+                <figure class="media-left">
+                    <p class="image is-48x48">
+                        <img :src="$root.user.image">
+                    </p>
+                </figure>
+                <div class="media-content">
+                    <p class="control">
+                        <textarea v-html class="textarea" placeholder="Write a comment..." ref="reply"
+                        v-model="commentBody" maxlength="500"></textarea>
+                    </p>
+                    <p class="control">
+                        <button class="button" @click.prevent="submitComment">Post comment</button>
                     </p>
                 </div>
-                
-                <article class="media" v-if="post.comments.length > 0" v-for="comment in comments" :key="comment.id">
-                    <figure class="media-left">
-                        <p class="image is-48x48">
-                            <img :src="comment.user.image">
-                        </p>
-                    </figure>
-                    <div class="media-content">
-                        <div class="content">
-                            <p>
-                                <a href="#">
-                                    <strong>{{comment.user.name}}</strong> &commat;{{comment.user.username}}
-                                </a>
-                                <br>
-                                {{comment.body}}
-                                <br>
-                                <small>
-                                <a v-if="comment.likedByCurrentUser" @click="likeComment(comment.id)">Unlike</a>
-                                <a v-else @click="likeComment(comment.id)">Like</a> ·
-                                <a @click="reply(comment.user.username)">Reply</a> ·
-                                {{comment.readableDate}} · {{comment.likesCount}} {{ pluralize('like', comment.likeCount) }}
-                                </small>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="media-right">
-                          <a @click="openEditCommentOption(comment)" 
-                                v-if="$root.user.id == comment.user.id"><i class="fa fa-minus-circle"></i>
-                          </a>
-                          <a  
-                            v-if="$root.user.id != comment.user.id 
-                                && $root.user.privilege == 'Dean' 
-                                && $root.user.id != post.user.id" 
-                                @click="deleteComment(comment.id)">
-                                <i class="fa fa-times-circle"></i>
-                          </a>
-                          <a  
-                            v-if="$root.user.id != comment.user.id
-                                 && $root.user.privilege != 'Dean' 
-                                 && $root.user.id == post.user.id" 
-                                @click="deleteComment(comment.id)">
-                                <i class="fa fa-times-circle"></i>
-                          </a>
-                          <a  
-                            v-if="$root.user.id != comment.user.id
-                                 && $root.user.privilege == 'Dean' 
-                                 && $root.user.id == post.user.id" 
-                                @click="deleteComment(comment.id)">
-                                <i class="fa fa-times-circle"></i>
-                          </a>
-                    </div>
-                </article>
-
-                <!-- REPLY FORM -->
-                <article class="media" v-show="check">
-                    <figure class="media-left">
-                        <p class="image is-48x48">
-                            <img :src="$root.user.image">
-                        </p>
-                    </figure>
-                    <div class="media-content">
-                        <p class="control">
-                            <textarea v-html class="textarea" placeholder="Write a comment..." ref="reply"
-                            v-model="commentBody" maxlength="500"></textarea>
-                        </p>
-                        <p class="control">
-                            <button class="button" @click.prevent="submitComment">Post comment</button>
-                        </p>
-                    </div>
-                </article>
-                <!-- REPLY -->
-            </div>
-
-            <div class="media-right" v-if="$root.user.privilege == 'Dean' || $root.user.id == post.user.id">
-                <a @click="postOptions = true" v-if="$root.user.id == post.user.id"><i class="fa fa-minus-circle"></i></a>
-                <a class="delete" v-else @click="deletePost(post.id)"></a>
-            </div>
-        </article>
-
-        <div class="modal is-active" v-if="postOptions">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Edit Post</p>
-                </header>
-                <section class="modal-card-body">
-                    <div class="media-content">
-                        <div class="control">
-                            <div class="field">
-                                  <label class="label">Body</label>
-                                  <textarea class="textarea" maxlength="2200" placeholder="Write something..." v-model="body"></textarea>
-                            </div>
-                        </div>
-                      
-                    </div>
-                </section>
-                <footer class="modal-card-foot">
-                    <a class="button is-primary" @click="editPost()">Save changes</a>
-                    <a class="button is-danger" @click="deletePost()">Delete post</a>
-                    <a class="button" @click="cancel()">Cancel</a>
-                </footer>
-            </div>
+            </article>
+            <!-- REPLY -->
         </div>
-
-        <div class="modal is-active" v-if="commentOptions">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Edit Comment</p>
-                </header>
-                <section class="modal-card-body">
-                    <div class="media-content">
-                        <p class="control">
-                            <textarea class="textarea" maxlength="500" placeholder="Write something..." v-model="commentBody"></textarea>
-                        </p>
-                    </div>
-                </section>
-                <footer class="modal-card-foot">
-                    <a class="button is-primary" @click="editComment(commentHolder.id)">Save changes</a>
-                    <a class="button is-danger" @click="deleteComment(commentHolder.id)">Delete comment</a>
-                    <a class="button" @click="cancelEditComment(commentHolder.id)">Cancel</a>
-                </footer>
-            </div>
+        <div class="media-right" v-if="$root.user.privilege == 'Dean' || $root.user.id == post.user.id">
+            <a class="delete" @click="deletePost(post.id)"></a>
         </div>
-    </div>
-
-
+    </article>
+    <div class="divider"></div>
+</div>
+</div>
 </template>
 
 <script>

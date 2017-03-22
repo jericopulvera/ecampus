@@ -10,8 +10,6 @@ class PostComment extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $comment;
-
     public $user;
 
     public $post;
@@ -21,9 +19,8 @@ class PostComment extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($comment, $user, $post)
+    public function __construct($user, $post)
     {
-        $this->comment = $comment;
         $this->user = $user;
         $this->post = $post;
     }
@@ -55,7 +52,6 @@ class PostComment extends Notification implements ShouldQueue
 
         return [
             'user' => $this->user,
-            'post' => $this->post,
             'message' => $message,
         ];
     }

@@ -27,9 +27,7 @@
                     </form>
              
                 <p class="has-text-centered">
-                    <a @click="switchForm(2)" :class="[loadingButton ? 'is-disabled' : '', facebookButton ? 'is-disabled' : '']">Register an Account</a> |
-                    <a href="#" :class="[loadingButton ? 'is-disabled' : '', facebookButton ? 'is-disabled' : '']" @click="form = 4">Forgot password</a> |
-                    <a href="/demo-credentials" target="_blank">Demo Credentials</a>
+                    <a @click="switchForm(2)" :class="[loadingButton ? 'is-disabled' : '', facebookButton ? 'is-disabled' : '']">Register an Account</a> 
                 </p>
             </div><!-- LOGIN -->
 
@@ -57,23 +55,11 @@
                             <p class="control">
                                 <button class="button is-info" :class="{'is-loading' : loadingButton, 'is-disabled': facebookButton}" style="width: 100%;">Login</button>
                             </p>
-                           <!--  <hr>
-                            <a href="/redirect" id="fb-btn" class="button is-info"
-                                :class="{'is-loading' : facebookButton}"
-                                @click="facebookButton = true"
-                                >
-                            <span class="icon">
-                            <i class="fa fa-facebook"></i>
-                            </span>
-                            <span>Login with facebook</span>
-                            </a> -->
                         </div>
                     </form>
              
                 <p class="has-text-centered">
-                    <a @click="switchForm(2)" :class="[loadingButton ? 'is-disabled' : '', facebookButton ? 'is-disabled' : '']">Register an Account</a> |
-                    <a href="#" :class="[loadingButton ? 'is-disabled' : '', facebookButton ? 'is-disabled' : '']" @click="form = 4">Forgot password</a> |
-                    <a href="/demo-credentials" target="_blank">Demo Credentials</a>
+                    <a @click="switchForm(2)" :class="[loadingButton ? 'is-disabled' : '', facebookButton ? 'is-disabled' : '']">Register an Account</a>
                 </p>
             </div><!-- LOGIN -->
 
@@ -247,9 +233,6 @@
                             @click.prevent="switchForm(1)">Cancel</button>
                     </div>
                 </form>
-                <p class="has-text-centered">
-                    <a href="/demo-credentials" target="_blank">Demo Credentials</a>
-                </p>
             </div> <!-- LOGIN WITH FACEBOOK -->
 
         </div>

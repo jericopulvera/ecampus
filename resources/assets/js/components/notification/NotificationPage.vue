@@ -3,13 +3,13 @@
         <left-panel style="order: 0;"></left-panel>
         <transition name="slide-fade">
         <div class="column is-6" style="order: 1;">
-            <div class="panel has-text-centered" style="background-color: white;">
-                <div class="panel-heading" style="background-color: white;">
+            <div class="panel has-text-centered">
+                <div class="panel-heading">
                     Notifications
                 </div>
-                <div class="panel-block" style="background-color: white;">
+                <div class="panel-block">
                     <div class="control">
-                        <div class="notification" v-if="notifications.length > 0" v-for="notification in notifications" :key="notification.id" style="background-color: white;">
+                        <div class="notification" v-if="notifications.length > 0" v-for="notification in notifications" :key="notification.id">
                             <strong v-html="notification.data.message"></strong>
                             <br>
                             <small v-text="notification.created_at"></small>
