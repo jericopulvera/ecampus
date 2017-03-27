@@ -43,7 +43,7 @@
                                 <a class="delete" @click.prevent="loginError = false"></a>
                                 User credentials does not match our record
                             </div>
-                            <label class="label">Employee / Student Number</label>
+                            <label class="label">Student / Employee Number</label>
                             <p class="control">
                                 <input class="input" type="text" ref="usn" placeholder="student/employee number" v-model="loginForm.usn">
                             </p>
