@@ -9,6 +9,8 @@
                 <h2>{{ $user->name }}</h2>
             </div>
             <div class="pull-right">
+                <a href="{{ route('admin-edit-user', $user->usn) }}" type="submit" class="btn btn-success btn-xs'">Edit User</a>
+           
                 @if ($user->active === 1)
                 <form action={!! route('admin-block-user', $user->usn) !!} method="POST">
                     {{csrf_field()}}

@@ -19,6 +19,48 @@ class UserController extends Controller
         return view('admin.user.user-index');
     }
 
+    public function edit(User $user)
+    {
+        return view('admin.user.edit', compact('user'));
+    }
+
+    public function update(User $user)
+    {
+        $this->validate(request(), [
+            'usn'      => 'required|numeric',
+            'username' => 'required|alpha_dash',
+            'name'     => "required|min:3|max:32|regex:/^[\\p{L} .'-]+$/",
+            'privilege'=> 'required',
+            'password' => 'confirmed|min:6',
+         ]);
+
+        if ( ! request('password')) {
+            $user->update([
+                'usn' => request('usn'),
+                'username' => request('username'),
+                'name' => request('name'),
+                'email' => request('email'),
+                'privilege' => request('privilege'),
+            ]);
+        } else {
+            $user->update([
+                'usn' => request('usn'),
+                'username' => request('username'),
+                'name' => request('name'),
+                'email' => request('email'),
+                'privilege' => request('privilege'),
+                'password' => bcrypt(request('password')),
+             ]);
+        }
+        
+        notify()->flash('Success!', 'success', [
+            'timer' => 3000,
+            'text' => 'You have successfully updated ' . request('name'),
+        ]);
+
+        return redirect()->route('admin-edit-user', request('usn'));
+    }
+
     public function professors()
     {
         return view('admin.user.professors');
@@ -41,6 +83,7 @@ class UserController extends Controller
             'username' => 'required|alpha_dash|unique:users,username',
             'name'     => "required|min:3|max:32|regex:/^[\\p{L} .'-]+$/",
             'email'    => 'required|email|unique:users,email',
+            'privilege'=> 'required',
             'password' => 'required|confirmed|min:6',
          ]);
 
@@ -49,7 +92,7 @@ class UserController extends Controller
             'username' => $request->username,
             'name' => $request->name,
             'email' => $request->email,
-            'privilege' => 'Professor',
+            'privilege' => $request->privilege,
             'password' => bcrypt($request->usn),
         ]);
 

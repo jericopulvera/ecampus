@@ -7,16 +7,19 @@
                 <div class="panel-heading">
                     Notifications
                 </div>
-                <div class="panel-block">
+                <div class="panel-block" v-if="notifications.length > 0">
                     <div class="control">
-                        <div class="notification" v-if="notifications.length > 0" v-for="notification in notifications" :key="notification.id">
+                        <div class="notification" v-for="notification in notifications" :key="notification.id" style="background-color: white;">
                             <strong v-html="notification.data.message"></strong>
                             <br>
                             <small v-text="notification.created_at"></small>
                         </div>
-
-                        <div class="notification has-text-centered" v-if="showMessage">
-                            <strong> No notifications </strong>
+                    </div>
+                </div>
+                <div class="panel-block" v-else>
+                    <div class="control">
+                        <div class="notification has-text-centered" style="background-color: white;">
+                             No notifications
                         </div>
                     </div>
                 </div>

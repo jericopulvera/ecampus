@@ -47,14 +47,21 @@
             </div>
         </div>
         <br v-if="$root.route !== 'user.profile'">
-        <div class="panel">
+        <div class="panel" v-cloak>
             <div class="panel-heading has-text-centered">
-                <p class="trend-title"><span class="title is-5">{{ events.length > 0 ? 'Upcoming events' : 'No Upcoming Events'}}</span>
+                <p class="trend-title"><span class="title is-5">Upcoming events</span>
                 </p>
             </div>
-            <div class="panel-block">
+            <div class="panel-block" v-if="events.length === 0">
                 <div class="control">
-                    <div class="trend-hashtag has-text-centered"  v-for="event in events" v-if="events.length > 0">
+                    <div class="trend-hashtag has-text-centered">
+                       None
+                    </div>
+                </div>
+            </div>
+            <div class="panel-block" v-else>
+                <div class="control">
+                    <div class="trend-hashtag has-text-centered"  v-for="event in events">
                         <a :href="'/calendar/event/'+event.id">{{event.title}}</a>
                     </div>
                 </div>

@@ -77,6 +77,10 @@ class PostController extends Controller
             $weight = 1;
         }
 
+        foreach(auth()->user()->posts as $post) {
+            $post->decrement('time');
+        }
+
         $post = auth()->user()->posts()->create([
             'body'   => request('body'),
             'weight' => $weight,
@@ -95,6 +99,13 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        if ($post === null) {
+            notify()->flash('Oops!', 'error', [
+                 'timer' => 3000,
+                 'text' => 'The post no longer exist',
+             ]);
+            return redirect()->back();
+        }
         $classes = auth()->user()->userGroups;
         return view('post.show-post', compact('post', 'classes'));
     }

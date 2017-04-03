@@ -5,10 +5,18 @@
                 <p class="trend-title"><span class="title is-5">My Classes</span>
                 </p>    
             </div>
-            <div class="panel-block">
-                <div class="control"  v-if="$root.user.userGroups.length > 1">
+            <div class="panel-block"  v-if="$root.user.userGroups.length > 1">
+                <div class="control">
                     <p class="trend-hashtag has-text-centered" v-for="group in $root.user.userGroups">
                         <a :href="'/groups/'+group.slug">{{group.subject}} - {{group.section}}</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel-block"  v-else>
+                <div class="control">
+                    <p class="trend-hashtag has-text-centered">
+                        No Classes
                     </p>
                 </div>
             </div>

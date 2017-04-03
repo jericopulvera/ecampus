@@ -1,7 +1,7 @@
 import algolia from 'algoliasearch'
 import autocomplete from 'autocomplete.js'
 
-var index = algolia('ZTHT7T6SRW', 'e7a1d84577f0e1179eecc87224747da5')
+var index = algolia('RQTMQTYD3B', '03db5fb58fe8a6e53811dd4f86c4c788')
 
 export const userautocomplete = selector => {
     var users = index.initIndex('users')

@@ -24,6 +24,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/students', 'UserController@students');
         Route::get('/users/create', 'UserController@create');
         Route::post('/users/create', 'UserController@store');
+        Route::patch('/users/{user}/update', 'UserController@update')->name('admin-update-user');
+        Route::get('/users/{user}/edit', 'UserController@edit')->name('admin-edit-user');
         Route::get('/users/{user}', 'UserController@show');
         Route::post('/users/{user}/block', 'UserController@block')->name('admin-block-user');
         Route::patch('/users/{user}/unblock', 'UserController@unblock')->name('admin-unblock-user');

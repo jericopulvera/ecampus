@@ -4233,6 +4233,8 @@ a.nav-item.is-tab.is-active {
   border-bottom: 1px solid #dbdbdb;
   border-left: 1px solid #dbdbdb;
   border-right: 1px solid #dbdbdb;
+  background-color: white;
+  
 }
 
 .panel-heading:first-child,

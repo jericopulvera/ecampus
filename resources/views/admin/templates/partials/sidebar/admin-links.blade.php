@@ -37,7 +37,7 @@
         <a href="/admin/settings"><i class="fa fa-cog"></i> Settings</a>
     </li>
 
-<li><a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+<li><a href="hahaha" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
     <i class="fa fa-sign-out pull-right"></i> Log Out</a>
 </li>
     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">

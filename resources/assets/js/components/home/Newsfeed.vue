@@ -11,17 +11,20 @@
                     Newsfeed
                 </div>
                  <posts v-for="post in posts" :post="post" :key="post.id"></posts>
+                 <div class="panel-block">
+                    <div class="control">
+                        <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
+                            <span slot="no-more">
+                                No more posts
+                            </span>
+                            <span slot="no-results">
+                              No results
+                            </span>
+                        </infinite-loading>
+                    </div>
+                 </div>
+                 
             </div>
-
-                <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
-                    <span slot="no-more">
-                        No more posts
-                    </span>
-                    <span slot="no-results">
-                      No more posts
-                    </span>
-                </infinite-loading>
-              
         </div>
 
         

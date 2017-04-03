@@ -31,7 +31,7 @@
 	import eventHub from '../../event';
 	var algoliasearch = require('algoliasearch');
 
-	var client = algoliasearch('ZTHT7T6SRW', 'e7a1d84577f0e1179eecc87224747da5');
+	var client = algoliasearch('RQTMQTYD3B', '03db5fb58fe8a6e53811dd4f86c4c788');
 
 	var index = client.initIndex('users'); 
 

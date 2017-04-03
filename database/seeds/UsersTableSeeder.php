@@ -80,7 +80,7 @@ class UsersTableSeeder extends Seeder
         // PROFESSORS
         foreach(range(1,5) as $index) {
              $create = User::create([
-                'usn'       => $faker->unique()->numberBetween($min = 10000000000, $max = 99999999999),
+                'usn'       => $faker->unique()->numberBetween((int) 10000000000, (int) 99999999999),
                 'name'      => $faker->unique()->name,
                 'username'  => $faker->unique()->username,
                 'email'     => $faker->unique()->email,
