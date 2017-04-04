@@ -11,6 +11,7 @@
             <div class="pull-right">
                 <a href="{{ route('admin-edit-user', $user->usn) }}" type="submit" class="btn btn-success btn-xs'">Edit User</a>
            
+	@if($user->privilege != 'Dean')
                 @if ($user->active === 1)
                 <form action={!! route('admin-block-user', $user->usn) !!} method="POST">
                     {{csrf_field()}}
@@ -23,6 +24,7 @@
                     <button type="submit" class="btn btn-info btn-xs'">Unblock</button>
                 </form> 
                 @endif
+	@endif
             </div>
             <div class="clearfix"></div>
         </div>

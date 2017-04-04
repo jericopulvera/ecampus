@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $data = collect();
         
-        $users = User::where('privilege', '!=', 'Dean')->get();
+        $users = User::all();
 
         foreach ($users as $user) {
             $user->usn = $user->usn;

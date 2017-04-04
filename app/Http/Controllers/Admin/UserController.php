@@ -24,7 +24,7 @@ class UserController extends Controller
         return view('admin.user.edit', compact('user'));
     }
 
-    public function update(User $user)
+    public function update(User $user, Request $request)
     {
         $this->validate(request(), [
             'usn'      => 'required|numeric',
@@ -33,6 +33,13 @@ class UserController extends Controller
             'privilege'=> 'required',
             'password' => 'confirmed|min:6',
          ]);
+		
+	if ($user->privilege == 'Dean') {
+		$privilege = 'Dean';
+		$request->privilege = 'Dean';
+	} else {
+		$privilege = request('privilege');
+	}
 
         if ( ! request('password')) {
             $user->update([
@@ -40,7 +47,7 @@ class UserController extends Controller
                 'username' => request('username'),
                 'name' => request('name'),
                 'email' => request('email'),
-                'privilege' => request('privilege'),
+                'privilege' => $privilege,
             ]);
         } else {
             $user->update([
@@ -48,7 +55,7 @@ class UserController extends Controller
                 'username' => request('username'),
                 'name' => request('name'),
                 'email' => request('email'),
-                'privilege' => request('privilege'),
+                'privilege' => $privilege,
                 'password' => bcrypt(request('password')),
              ]);
         }
